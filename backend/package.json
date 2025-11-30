@@ -1,0 +1,20 @@
+{
+  "name": "exerfy-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend API for Exerfy workout sheet builder",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
+
