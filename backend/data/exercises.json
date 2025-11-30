@@ -1,0 +1,200 @@
+[
+  {
+    "id": "1",
+    "name": "Barbell Curl",
+    "bodyArea": "upper body",
+    "primaryMuscles": ["biceps"],
+    "secondaryMuscles": [],
+    "equipment": ["barbell"],
+    "category": "strength",
+    "level": "intermediate",
+    "description": "A classic bicep exercise using a barbell",
+    "instructions": [
+      "Stand up straight with a barbell in your hands",
+      "Keep your elbows close to your torso",
+      "Curl the barbell up to your chest",
+      "Slowly lower back to starting position"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/0131.gif"],
+    "sourceId": "1",
+    "tags": []
+  },
+  {
+    "id": "2",
+    "name": "Dumbbell Bench Press",
+    "bodyArea": "upper body",
+    "primaryMuscles": ["pectorals"],
+    "secondaryMuscles": ["triceps", "shoulders"],
+    "equipment": ["dumbbell"],
+    "category": "strength",
+    "level": "intermediate",
+    "description": "Chest exercise using dumbbells on a flat bench",
+    "instructions": [
+      "Lie on a flat bench with dumbbells in each hand",
+      "Press the dumbbells up until arms are extended",
+      "Lower slowly back to chest level"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/0314.gif"],
+    "sourceId": "2",
+    "tags": []
+  },
+  {
+    "id": "3",
+    "name": "Squat",
+    "bodyArea": "lower body",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "equipment": ["body weight"],
+    "category": "strength",
+    "level": "beginner",
+    "description": "Fundamental lower body exercise",
+    "instructions": [
+      "Stand with feet shoulder-width apart",
+      "Lower your body by bending knees",
+      "Keep back straight and chest up",
+      "Return to standing position"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/1512.gif"],
+    "sourceId": "3",
+    "tags": []
+  },
+  {
+    "id": "4",
+    "name": "Pull-up",
+    "bodyArea": "back",
+    "primaryMuscles": ["lats"],
+    "secondaryMuscles": ["biceps", "rhomboids"],
+    "equipment": ["body weight"],
+    "category": "strength",
+    "level": "intermediate",
+    "description": "Upper body pulling exercise",
+    "instructions": [
+      "Hang from a pull-up bar",
+      "Pull your body up until chin is above bar",
+      "Lower slowly to starting position"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/1301.gif"],
+    "sourceId": "4",
+    "tags": []
+  },
+  {
+    "id": "5",
+    "name": "Overhead Press",
+    "bodyArea": "upper body",
+    "primaryMuscles": ["delts"],
+    "secondaryMuscles": ["triceps"],
+    "equipment": ["barbell"],
+    "category": "strength",
+    "level": "intermediate",
+    "description": "Shoulder pressing movement",
+    "instructions": [
+      "Stand with feet shoulder-width apart",
+      "Hold barbell at shoulder height",
+      "Press up until arms are fully extended",
+      "Lower back to shoulders"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/0305.gif"],
+    "sourceId": "5",
+    "tags": []
+  },
+  {
+    "id": "6",
+    "name": "Deadlift",
+    "bodyArea": "back",
+    "primaryMuscles": ["erector spinae"],
+    "secondaryMuscles": ["glutes", "hamstrings"],
+    "equipment": ["barbell"],
+    "category": "strength",
+    "level": "advanced",
+    "description": "Full body compound movement",
+    "instructions": [
+      "Stand with feet hip-width apart",
+      "Bend at hips and knees to grab bar",
+      "Keep back straight and lift with legs",
+      "Stand up straight, then lower bar"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/0001.gif"],
+    "sourceId": "6",
+    "tags": []
+  },
+  {
+    "id": "7",
+    "name": "Push-up",
+    "bodyArea": "upper body",
+    "primaryMuscles": ["pectorals"],
+    "secondaryMuscles": ["triceps", "shoulders"],
+    "equipment": ["body weight"],
+    "category": "strength",
+    "level": "beginner",
+    "description": "Classic bodyweight chest exercise",
+    "instructions": [
+      "Start in plank position",
+      "Lower body until chest nearly touches ground",
+      "Push back up to starting position"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/1164.gif"],
+    "sourceId": "7",
+    "tags": []
+  },
+  {
+    "id": "8",
+    "name": "Lunges",
+    "bodyArea": "lower body",
+    "primaryMuscles": ["quadriceps"],
+    "secondaryMuscles": ["glutes"],
+    "equipment": ["body weight"],
+    "category": "strength",
+    "level": "beginner",
+    "description": "Unilateral leg exercise",
+    "instructions": [
+      "Step forward with one leg",
+      "Lower body until both knees are bent at 90 degrees",
+      "Push back to starting position",
+      "Alternate legs"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/3214.gif"],
+    "sourceId": "8",
+    "tags": []
+  },
+  {
+    "id": "9",
+    "name": "Plank",
+    "bodyArea": "core",
+    "primaryMuscles": ["abs"],
+    "secondaryMuscles": ["shoulders"],
+    "equipment": ["body weight"],
+    "category": "strength",
+    "level": "beginner",
+    "description": "Core stability exercise",
+    "instructions": [
+      "Start in push-up position",
+      "Hold body straight from head to heels",
+      "Keep core engaged",
+      "Hold for desired time"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/2204.gif"],
+    "sourceId": "9",
+    "tags": []
+  },
+  {
+    "id": "10",
+    "name": "Dumbbell Row",
+    "bodyArea": "back",
+    "primaryMuscles": ["lats"],
+    "secondaryMuscles": ["rhomboids", "biceps"],
+    "equipment": ["dumbbell"],
+    "category": "strength",
+    "level": "intermediate",
+    "description": "Back rowing movement with dumbbell",
+    "instructions": [
+      "Bend over with one knee on bench",
+      "Pull dumbbell up to side of chest",
+      "Lower slowly",
+      "Alternate sides"
+    ],
+    "imageUrls": ["https://d205bpvrqc9yn1.cloudfront.net/0315.gif"],
+    "sourceId": "10",
+    "tags": []
+  }
+]
+

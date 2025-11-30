@@ -18,17 +18,21 @@ export default function ExercisesPage() {
 
   useEffect(() => {
     loadExercises();
-  }, [filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters.q, filters.bodyArea, filters.primaryMuscle, filters.equipment, filters.level, filters.category, filters.limit, filters.offset]);
 
   const loadExercises = async () => {
     setLoading(true);
     setError(null);
     try {
+      console.log('Loading exercises with filters:', filters);
       const response = await fetchExercises(filters);
+      console.log('Received response:', response);
       setExercises(response.exercises);
+      console.log('Set exercises:', response.exercises.length);
     } catch (err) {
-      setError('Failed to load exercises. Please try again.');
-      console.error(err);
+      console.error('Error loading exercises:', err);
+      setError(`Failed to load exercises: ${err instanceof Error ? err.message : 'Unknown error'}`);
     } finally {
       setLoading(false);
     }

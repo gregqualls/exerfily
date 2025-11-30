@@ -14,11 +14,26 @@ export async function fetchExercises(filters: ExerciseFilters = {}): Promise<Exe
   if (filters.limit) params.append('limit', filters.limit.toString());
   if (filters.offset) params.append('offset', filters.offset.toString());
 
-  const response = await fetch(`${API_BASE_URL}/api/exercises?${params.toString()}`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch exercises');
+  const url = `${API_BASE_URL}/api/exercises?${params.toString()}`;
+  console.log('Fetching from:', url);
+  
+  try {
+    const response = await fetch(url);
+    console.log('Response status:', response.status, response.statusText);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Error response:', errorText);
+      throw new Error(`Failed to fetch exercises: ${response.status} ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('Response data:', data);
+    return data;
+  } catch (error) {
+    console.error('Fetch error:', error);
+    throw error;
   }
-  return response.json();
 }
 
 export async function fetchExerciseById(id: string): Promise<Exercise> {

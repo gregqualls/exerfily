@@ -1,5 +1,12 @@
 // ExerciseDB API integration
-const EXERCISEDB_BASE_URL = 'https://exercisedb-api.vercel.app';
+// Load from local JSON file for instant loading
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const EXERCISES_FILE = join(__dirname, '../../data/exercises.json');
 
 // Cache for exercises (simple in-memory cache)
 let exerciseCache = null;
@@ -56,20 +63,180 @@ function mapLevel(level) {
 }
 
 /**
- * Fetch all exercises from ExerciseDB API
+ * Mock exercise data for development
+ */
+function getMockExercises() {
+  return [
+    {
+      id: '1',
+      name: 'Barbell Curl',
+      bodyPart: 'biceps',
+      target: 'biceps',
+      equipment: 'barbell',
+      category: 'strength',
+      instructions: [
+        'Stand up straight with a barbell in your hands',
+        'Keep your elbows close to your torso',
+        'Curl the barbell up to your chest',
+        'Slowly lower back to starting position'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/0131.gif'
+    },
+    {
+      id: '2',
+      name: 'Dumbbell Bench Press',
+      bodyPart: 'chest',
+      target: 'pectorals',
+      equipment: 'dumbbell',
+      category: 'strength',
+      instructions: [
+        'Lie on a flat bench with dumbbells in each hand',
+        'Press the dumbbells up until arms are extended',
+        'Lower slowly back to chest level'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/0314.gif'
+    },
+    {
+      id: '3',
+      name: 'Squat',
+      bodyPart: 'legs',
+      target: 'quadriceps',
+      equipment: 'body weight',
+      category: 'strength',
+      instructions: [
+        'Stand with feet shoulder-width apart',
+        'Lower your body by bending knees',
+        'Keep back straight and chest up',
+        'Return to standing position'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/1512.gif'
+    },
+    {
+      id: '4',
+      name: 'Pull-up',
+      bodyPart: 'back',
+      target: 'lats',
+      equipment: 'body weight',
+      category: 'strength',
+      instructions: [
+        'Hang from a pull-up bar',
+        'Pull your body up until chin is above bar',
+        'Lower slowly to starting position'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/1301.gif'
+    },
+    {
+      id: '5',
+      name: 'Overhead Press',
+      bodyPart: 'shoulders',
+      target: 'delts',
+      equipment: 'barbell',
+      category: 'strength',
+      instructions: [
+        'Stand with feet shoulder-width apart',
+        'Hold barbell at shoulder height',
+        'Press up until arms are fully extended',
+        'Lower back to shoulders'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/0305.gif'
+    },
+    {
+      id: '6',
+      name: 'Deadlift',
+      bodyPart: 'back',
+      target: 'erector spinae',
+      equipment: 'barbell',
+      category: 'strength',
+      instructions: [
+        'Stand with feet hip-width apart',
+        'Bend at hips and knees to grab bar',
+        'Keep back straight and lift with legs',
+        'Stand up straight, then lower bar'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/0001.gif'
+    },
+    {
+      id: '7',
+      name: 'Push-up',
+      bodyPart: 'chest',
+      target: 'pectorals',
+      equipment: 'body weight',
+      category: 'strength',
+      instructions: [
+        'Start in plank position',
+        'Lower body until chest nearly touches ground',
+        'Push back up to starting position'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/1164.gif'
+    },
+    {
+      id: '8',
+      name: 'Lunges',
+      bodyPart: 'legs',
+      target: 'quadriceps',
+      equipment: 'body weight',
+      category: 'strength',
+      instructions: [
+        'Step forward with one leg',
+        'Lower body until both knees are bent at 90 degrees',
+        'Push back to starting position',
+        'Alternate legs'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/3214.gif'
+    },
+    {
+      id: '9',
+      name: 'Plank',
+      bodyPart: 'abs',
+      target: 'abs',
+      equipment: 'body weight',
+      category: 'strength',
+      instructions: [
+        'Start in push-up position',
+        'Hold body straight from head to heels',
+        'Keep core engaged',
+        'Hold for desired time'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/2204.gif'
+    },
+    {
+      id: '10',
+      name: 'Dumbbell Row',
+      bodyPart: 'back',
+      target: 'lats',
+      equipment: 'dumbbell',
+      category: 'strength',
+      instructions: [
+        'Bend over with one knee on bench',
+        'Pull dumbbell up to side of chest',
+        'Lower slowly',
+        'Alternate sides'
+      ],
+      gifUrl: 'https://d205bpvrqc9yn1.cloudfront.net/0315.gif'
+    }
+  ];
+}
+
+/**
+ * Load exercises from local JSON file (instant loading)
+ */
+function loadExercisesFromFile() {
+  try {
+    const fileContent = readFileSync(EXERCISES_FILE, 'utf-8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    console.error('Error loading exercises from file, using mock data:', error);
+    // Fallback to mock data
+    return getMockExercises().map(mapExerciseDBToDomain);
+  }
+}
+
+/**
+ * Fetch all exercises - loads from local file instantly
  */
 async function fetchAllExercises() {
-  try {
-    const response = await fetch(`${EXERCISEDB_BASE_URL}/exercises`);
-    if (!response.ok) {
-      throw new Error(`ExerciseDB API error: ${response.status}`);
-    }
-    const data = await response.json();
-    return data.map(mapExerciseDBToDomain);
-  } catch (error) {
-    console.error('Error fetching from ExerciseDB:', error);
-    throw error;
-  }
+  // Load from local JSON file for instant response
+  return loadExercisesFromFile();
 }
 
 /**
