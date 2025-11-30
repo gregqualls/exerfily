@@ -285,7 +285,13 @@ export default function WorkoutDetailPage() {
   };
 
   if (!workout) {
-    return <div className="p-8">Loading...</div>;
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-slate-600">Loading workout...</p>
+        </div>
+      </div>
+    );
   }
 
   const selectedSession = workout.sessions.find(s => s.id === selectedSessionId);

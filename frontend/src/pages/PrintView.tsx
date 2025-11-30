@@ -34,25 +34,27 @@ export default function PrintView() {
   const loadData = async () => {
     if (!id) return;
 
+    let loadedWorkout: Workout | null = null;
+    let sessionsToLoad: Session[] = [];
+
     if (type === 'workout') {
-      const loadedWorkout = getWorkoutById(id);
+      loadedWorkout = getWorkoutById(id);
       if (!loadedWorkout) {
         navigate('/workouts');
         return;
       }
-      setWorkout(loadedWorkout);
-      setSessions(loadedWorkout.sessions);
+      sessionsToLoad = loadedWorkout.sessions;
     } else {
       // Find workout containing this session
       const allWorkouts = getWorkouts();
-      const foundWorkout = allWorkouts.find((w: Workout) =>
+      loadedWorkout = allWorkouts.find((w: Workout) =>
         w.sessions.some(s => s.id === id)
-      );
-      if (foundWorkout) {
-        setWorkout(foundWorkout);
-        const session = foundWorkout.sessions.find(s => s.id === id);
+      ) || null;
+      
+      if (loadedWorkout) {
+        const session = loadedWorkout.sessions.find(s => s.id === id);
         if (session) {
-          setSessions([session]);
+          sessionsToLoad = [session];
         } else {
           navigate('/workouts');
           return;
@@ -63,11 +65,11 @@ export default function PrintView() {
       }
     }
 
+    setWorkout(loadedWorkout);
+    setSessions(sessionsToLoad);
+
     // Load exercises
     const exerciseMap = new Map<string, Exercise>();
-    const sessionsToLoad = type === 'workout' 
-      ? (getWorkoutById(id)?.sessions || [])
-      : sessions;
 
     for (const session of sessionsToLoad) {
       for (const sessionEx of session.exercises) {
@@ -96,11 +98,29 @@ export default function PrintView() {
   };
 
   if (loading) {
-    return <div className="p-8">Loading...</div>;
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-slate-600">Loading print view...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!workout || sessions.length === 0) {
-    return <div className="p-8">No data found</div>;
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-slate-600 mb-4">No data found</p>
+          <button
+            onClick={() => navigate('/workouts')}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Back to Workouts
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
