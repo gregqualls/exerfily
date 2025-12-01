@@ -72,10 +72,10 @@ export default function WorkoutSelectorModal({
       onClick={onClose}
     >
       <div
-        className="bg-white/95 backdrop-blur-md rounded-xl max-w-md w-full p-6 shadow-2xl border border-mermaid-aqua-200"
+        className="bg-white/95 backdrop-blur-md rounded-xl max-w-md w-full p-6 shadow-2xl border border-border"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-6 text-mermaid-teal-900">
+        <h2 className="text-2xl font-bold mb-6 text-primary">
           Add {exercise.name} to Workout
         </h2>
 
@@ -83,23 +83,23 @@ export default function WorkoutSelectorModal({
           {!showNewWorkout ? (
             <>
               <div>
-                <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+                <label className="block text-sm font-semibold text-secondary mb-2">
                   Select Workout
                 </label>
                 <select
                   value={selectedWorkoutId}
                   onChange={(e) => setSelectedWorkoutId(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                  className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
                 >
-                  <option value="" className="text-mermaid-teal-600">Choose a workout...</option>
+                  <option value="" className="text-secondary">Choose a workout...</option>
                   {workouts.map(w => (
-                    <option key={w.id} value={w.id} className="text-mermaid-teal-900">{w.name}</option>
+                    <option key={w.id} value={w.id} className="text-primary">{w.name}</option>
                   ))}
                 </select>
               </div>
               <button
                 onClick={() => setShowNewWorkout(true)}
-                className="text-sm font-medium text-mermaid-aqua-600 hover:text-mermaid-aqua-700 hover:underline transition-colors"
+                className="text-sm font-medium text-primary-600 hover:text-primary-700 hover:underline transition-colors"
               >
                 + Create New Workout
               </button>
@@ -107,7 +107,7 @@ export default function WorkoutSelectorModal({
           ) : (
             <>
               <div>
-                <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+                <label className="block text-sm font-semibold text-secondary mb-2">
                   Workout Name
                 </label>
                 <input
@@ -115,7 +115,7 @@ export default function WorkoutSelectorModal({
                   value={newWorkoutName}
                   onChange={(e) => setNewWorkoutName(e.target.value)}
                   placeholder="Enter workout name"
-                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                  className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
                   autoFocus
                 />
               </div>
@@ -131,16 +131,16 @@ export default function WorkoutSelectorModal({
             </>
           )}
 
-          <div className="flex gap-3 pt-4 border-t border-mermaid-aqua-200">
+          <div className="flex gap-3 pt-4 border-t border-border">
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 bg-mermaid-teal-600 text-white rounded-lg hover:bg-mermaid-teal-700 transition-colors font-medium shadow-sm"
+              className="flex-1 px-4 py-2.5 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 transition-colors font-medium shadow-sm"
             >
               Cancel
             </button>
             <button
               onClick={handleAdd}
-              className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+              className="flex-1 px-4 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
             >
               Add
             </button>

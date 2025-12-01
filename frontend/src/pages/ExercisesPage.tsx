@@ -277,16 +277,16 @@ export default function ExercisesPage() {
     <div className="min-h-screen page-enter">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-6 animate-fade-in-up">
-          <h1 className="text-4xl font-bold text-mermaid-teal-900">Exercises</h1>
+          <h1 className="text-4xl font-bold text-primary">Exercises</h1>
           <div className="flex items-center gap-3">
             {/* View Toggle */}
-            <div className="flex items-center gap-2 bg-white/70 backdrop-blur-md rounded-lg p-1 border border-mermaid-aqua-200">
+            <div className="flex items-center gap-2 bg-white/70 backdrop-blur-md rounded-lg p-1 border border-border">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
                   viewMode === 'grid'
-                    ? 'bg-mermaid-aqua-600 text-white shadow-sm'
-                    : 'text-mermaid-teal-700 hover:bg-mermaid-aqua-50'
+                    ? 'bg-primary-600 text-white shadow-sm'
+                    : 'text-secondary hover:bg-primary-50'
                 }`}
                 aria-label="Grid view"
               >
@@ -309,8 +309,8 @@ export default function ExercisesPage() {
                 onClick={() => setViewMode('carousel')}
                 className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
                   viewMode === 'carousel'
-                    ? 'bg-mermaid-aqua-600 text-white shadow-sm'
-                    : 'text-mermaid-teal-700 hover:bg-mermaid-aqua-50'
+                    ? 'bg-primary-600 text-white shadow-sm'
+                    : 'text-secondary hover:bg-primary-50'
                 }`}
                 aria-label="Carousel view"
               >
@@ -332,13 +332,13 @@ export default function ExercisesPage() {
             </div>
             <button
               onClick={() => setIsExerciseDBOpen(true)}
-              className="px-5 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+              className="px-5 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
             >
               + Add from ExerciseDB
             </button>
             <button
               onClick={() => setIsCreateCustomOpen(true)}
-              className="px-5 py-2.5 bg-mermaid-purple-500 text-white rounded-lg hover:bg-mermaid-purple-600 transition-all font-medium shadow-sm hover:shadow-md btn-glow"
+              className="px-5 py-2.5 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-all font-medium shadow-sm hover:shadow-md btn-glow"
             >
               + Create Custom Exercise
             </button>
@@ -355,7 +355,7 @@ export default function ExercisesPage() {
 
         {loading && (
           <div className="text-center py-12 animate-fade-in">
-            <p className="text-mermaid-teal-700">Loading exercises...</p>
+            <p className="text-secondary">Loading exercises...</p>
           </div>
         )}
 
@@ -378,7 +378,7 @@ export default function ExercisesPage() {
                 <div ref={observerTarget} className="h-4" />
                 {loadingMore && (
                   <div className="text-center py-4 animate-fade-in">
-                    <p className="text-mermaid-teal-700">Loading more exercises...</p>
+                    <p className="text-secondary">Loading more exercises...</p>
                   </div>
                 )}
               </>
@@ -391,7 +391,7 @@ export default function ExercisesPage() {
               />
             )}
             {!loading && exercises.length > 0 && (
-              <div className="mt-8 text-center text-mermaid-teal-700 text-sm">
+              <div className="mt-8 text-center text-secondary text-sm">
                 <p>Showing {filteredExercises.length} of {totalExercises + customExercises.length} exercises</p>
               </div>
             )}

@@ -146,19 +146,19 @@ export default function CollapsibleFilterBar({
   ].filter(Boolean).length;
 
   return (
-    <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-md border border-mermaid-aqua-200 overflow-hidden transition-all duration-300 animate-fade-in-up">
+    <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-md border border-border overflow-hidden transition-all duration-300 animate-fade-in-up">
       {/* Collapsed Header */}
       <div
         onClick={() => setIsExpanded(!isExpanded)}
         className={`p-4 cursor-pointer transition-all duration-300 ${
-          isExpanded ? 'border-b border-mermaid-aqua-200' : ''
+          isExpanded ? 'border-b border-border' : ''
         }`}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-5 w-5 text-mermaid-aqua-600 transition-transform duration-300 ${
+              className={`h-5 w-5 text-primary-600 transition-transform duration-300 ${
                 isExpanded ? 'rotate-180' : ''
               }`}
               fill="none"
@@ -172,9 +172,9 @@ export default function CollapsibleFilterBar({
                 d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
               />
             </svg>
-            <span className="font-medium text-mermaid-teal-900">Filters</span>
+            <span className="font-medium text-primary">Filters</span>
             {activeFilterCount > 0 && (
-              <span className="px-2 py-0.5 bg-mermaid-aqua-600 text-white text-xs rounded-full font-medium">
+              <span className="px-2 py-0.5 bg-primary-600 text-white text-xs rounded-full font-medium">
                 {activeFilterCount}
               </span>
             )}
@@ -185,7 +185,7 @@ export default function CollapsibleFilterBar({
                 e.stopPropagation();
                 clearFilters();
               }}
-              className="text-xs text-mermaid-aqua-600 hover:text-mermaid-aqua-700 font-medium"
+              className="text-xs text-primary-600 hover:text-primary-700 font-medium"
             >
               Clear All
             </button>
@@ -194,37 +194,37 @@ export default function CollapsibleFilterBar({
         {!isExpanded && hasActiveFilters && (
           <div className="mt-2 flex flex-wrap gap-2">
             {filters.q && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded">
                 Search: {filters.q}
               </span>
             )}
             {filters.bodyPart && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded capitalize">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded capitalize">
                 {filters.bodyPart}
               </span>
             )}
             {filters.primaryMuscle && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded">
                 {filters.primaryMuscle}
               </span>
             )}
             {filters.equipment && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded">
                 {filters.equipment}
               </span>
             )}
             {filters.level && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded capitalize">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded capitalize">
                 {filters.level}
               </span>
             )}
             {filters.exerciseType && (
-              <span className="px-2 py-1 bg-mermaid-aqua-100 text-mermaid-teal-900 text-xs rounded">
+              <span className="px-2 py-1 bg-primary-100 text-primary text-xs rounded">
                 {filters.exerciseType}
               </span>
             )}
             {filters.equipmentFilterEnabled && (
-              <span className="px-2 py-1 bg-mermaid-purple-100 text-mermaid-teal-900 text-xs rounded">
+              <span className="px-2 py-1 bg-accent-100 text-primary text-xs rounded">
                 Equipment Filter: {filters.equipmentFilterMode}
               </span>
             )}
@@ -241,7 +241,7 @@ export default function CollapsibleFilterBar({
         <div className="p-6 space-y-4">
           <div className="flex flex-wrap gap-4 items-end">
             <div className="flex-1 min-w-[200px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Search
               </label>
               <input
@@ -249,18 +249,18 @@ export default function CollapsibleFilterBar({
                 value={searchQuery}
                 onChange={handleSearchChange}
                 placeholder="Search exercises..."
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               />
             </div>
 
             <div className="min-w-[150px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Body Parts
               </label>
               <select
                 value={filters.bodyPart || ''}
                 onChange={(e) => handleFilterChange('bodyPart', e.target.value)}
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               >
                 <option value="">All</option>
                 {availableBodyParts.map(part => (
@@ -270,13 +270,13 @@ export default function CollapsibleFilterBar({
             </div>
 
             <div className="min-w-[150px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Muscle
               </label>
               <select
                 value={filters.primaryMuscle || ''}
                 onChange={(e) => handleFilterChange('primaryMuscle', e.target.value)}
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               >
                 <option value="">All</option>
                 {availableMuscles.map(muscle => (
@@ -286,13 +286,13 @@ export default function CollapsibleFilterBar({
             </div>
 
             <div className="min-w-[150px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Equipment
               </label>
               <select
                 value={filters.equipment || ''}
                 onChange={(e) => handleFilterChange('equipment', e.target.value)}
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               >
                 <option value="">All</option>
                 {availableEquipment.map(eq => (
@@ -302,13 +302,13 @@ export default function CollapsibleFilterBar({
             </div>
 
             <div className="min-w-[150px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Level
               </label>
               <select
                 value={filters.level || ''}
                 onChange={(e) => handleFilterChange('level', e.target.value)}
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               >
                 <option value="">All</option>
                 <option value="beginner">Beginner</option>
@@ -318,13 +318,13 @@ export default function CollapsibleFilterBar({
             </div>
 
             <div className="min-w-[150px]">
-              <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+              <label className="block text-sm font-medium text-primary mb-1">
                 Exercise Type
               </label>
               <select
                 value={filters.exerciseType || ''}
                 onChange={(e) => handleFilterChange('exerciseType', e.target.value)}
-                className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               >
                 <option value="">All</option>
                 <option value="STRENGTH">Strength</option>
@@ -338,14 +338,14 @@ export default function CollapsibleFilterBar({
 
             <button
               onClick={clearFilters}
-              className="px-4 py-2 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+              className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
             >
               Clear Filters
             </button>
           </div>
 
           {/* Equipment Filter Section */}
-          <div className="border-t border-mermaid-aqua-200 pt-4">
+          <div className="border-t border-border pt-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <label className="flex items-center gap-2 cursor-pointer">
@@ -353,14 +353,14 @@ export default function CollapsibleFilterBar({
                     type="checkbox"
                     checked={equipmentFilterEnabled}
                     onChange={(e) => handleEquipmentFilterToggle(e.target.checked)}
-                    className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 rounded focus:ring-mermaid-aqua-500"
+                    className="w-4 h-4 text-primary-600 border-border rounded focus:ring-primary-500"
                   />
-                  <span className="text-sm font-medium text-mermaid-teal-900">
+                  <span className="text-sm font-medium text-primary">
                     Filter by Available Equipment
                   </span>
                 </label>
                 {availableEquipmentCount > 0 && (
-                  <span className="text-xs text-mermaid-teal-700">
+                  <span className="text-xs text-secondary">
                     ({availableEquipmentCount} equipment selected)
                   </span>
                 )}
@@ -368,7 +368,7 @@ export default function CollapsibleFilterBar({
 
               {equipmentFilterEnabled && (
                 <div className="flex items-center gap-4">
-                  <span className="text-sm text-mermaid-teal-700">Filter mode:</span>
+                  <span className="text-sm text-secondary">Filter mode:</span>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
@@ -376,9 +376,9 @@ export default function CollapsibleFilterBar({
                       value="any"
                       checked={equipmentFilterMode === 'any'}
                       onChange={() => handleEquipmentFilterModeChange('any')}
-                      className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 focus:ring-mermaid-aqua-500"
+                      className="w-4 h-4 text-primary-600 border-border focus:ring-primary-500"
                     />
-                    <span className="text-sm text-mermaid-teal-900">Any required</span>
+                    <span className="text-sm text-primary">Any required</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
@@ -387,9 +387,9 @@ export default function CollapsibleFilterBar({
                       value="all"
                       checked={equipmentFilterMode === 'all'}
                       onChange={() => handleEquipmentFilterModeChange('all')}
-                      className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 focus:ring-mermaid-aqua-500"
+                      className="w-4 h-4 text-primary-600 border-border focus:ring-primary-500"
                     />
-                    <span className="text-sm text-mermaid-teal-700">All required</span>
+                    <span className="text-sm text-secondary">All required</span>
                   </label>
                 </div>
               )}

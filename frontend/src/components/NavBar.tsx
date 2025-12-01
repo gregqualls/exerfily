@@ -50,7 +50,7 @@ export default function NavBar() {
   return (
     <>
       {showUpdateNotification && syncStatus?.updateAvailable && (
-        <div className="sticky top-0 z-[60] bg-mermaid-aqua-600 text-white px-4 py-2 animate-fade-in">
+        <div className="sticky top-0 z-[60] bg-primary-600 text-white px-4 py-2 animate-fade-in">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-2">
               <svg
@@ -75,7 +75,7 @@ export default function NavBar() {
               <button
                 onClick={handleSync}
                 disabled={isSyncing}
-                className="px-3 py-1 bg-white text-mermaid-aqua-600 rounded text-sm font-medium hover:bg-mermaid-aqua-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-3 py-1 bg-white text-primary-600 rounded text-sm font-medium hover:bg-primary-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {isSyncing ? 'Syncing...' : 'Update Now'}
               </button>
@@ -103,10 +103,10 @@ export default function NavBar() {
           </div>
         </div>
       )}
-      <nav className="sticky top-0 z-50 bg-white backdrop-blur-sm shadow-sm border-b border-mermaid-aqua-200">
+      <nav className="sticky top-0 z-50 bg-surface backdrop-blur-sm shadow-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link to="/" className="flex items-center gap-2 animate-fade-in hover:opacity-80" style={{ fontFamily: "'Bungee', cursive" }}>
+            <Link to="/" className="flex items-center gap-2 animate-fade-in hover:opacity-80 exerfily-logo-text">
               <svg 
                 className="w-8 h-8 animate-float" 
                 width="64" 
@@ -135,8 +135,8 @@ export default function NavBar() {
                 to="/exercises"
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   location.pathname === '/exercises'
-                    ? 'bg-mermaid-aqua-600 text-white shadow-md btn-glow'
-                    : 'text-mermaid-aqua-500 hover:bg-mermaid-aqua-50'
+                    ? 'bg-primary-600 text-white shadow-md btn-glow'
+                    : 'text-primary-500 hover:bg-primary-50'
                 }`}
               >
                 Exercises
@@ -145,8 +145,8 @@ export default function NavBar() {
                 to="/favorites"
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   location.pathname === '/favorites'
-                    ? 'bg-mermaid-aqua-600 text-white shadow-md btn-glow'
-                    : 'text-mermaid-aqua-500 hover:bg-mermaid-aqua-50'
+                    ? 'bg-primary-600 text-white shadow-md btn-glow'
+                    : 'text-primary-500 hover:bg-primary-50'
                 }`}
               >
                 Favorites
@@ -155,15 +155,15 @@ export default function NavBar() {
                 to="/workouts"
                 className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   location.pathname === '/workouts'
-                    ? 'bg-mermaid-aqua-600 text-white shadow-md btn-glow'
-                    : 'text-mermaid-aqua-500 hover:bg-mermaid-aqua-50'
+                    ? 'bg-primary-600 text-white shadow-md btn-glow'
+                    : 'text-primary-500 hover:bg-primary-50'
                 }`}
               >
                 Workouts
               </Link>
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="p-2 text-mermaid-aqua-500 hover:text-mermaid-aqua-600 hover:bg-mermaid-aqua-50 rounded-lg transition-colors"
+                className="p-2 text-primary-500 hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-colors"
                 title="Equipment Settings"
                 aria-label="Equipment Settings"
               >

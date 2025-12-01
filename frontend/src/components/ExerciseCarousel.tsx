@@ -138,7 +138,7 @@ export default function ExerciseCarousel({
 
   if (exercises.length === 0) {
     return (
-      <div className="text-center py-12 text-mermaid-teal-700 animate-fade-in">
+      <div className="text-center py-12 text-secondary animate-fade-in">
         <p>No exercises found. Try adjusting your filters.</p>
       </div>
     );
@@ -149,12 +149,12 @@ export default function ExerciseCarousel({
       {/* Navigation Arrows */}
       <button
         onClick={goToPrevious}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-md rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:bg-white border border-mermaid-aqua-200 hover:scale-110"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-md rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:bg-white border border-border hover:scale-110"
         aria-label="Previous exercise"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 sm:h-6 sm:w-6 text-mermaid-aqua-600"
+          className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -165,12 +165,12 @@ export default function ExerciseCarousel({
 
       <button
         onClick={goToNext}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-md rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:bg-white border border-mermaid-aqua-200 hover:scale-110"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-white/90 backdrop-blur-md rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all hover:bg-white border border-border hover:scale-110"
         aria-label="Next exercise"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 sm:h-6 sm:w-6 text-mermaid-aqua-600"
+          className="h-5 w-5 sm:h-6 sm:w-6 text-primary-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -298,8 +298,8 @@ export default function ExerciseCarousel({
             }}
             className={`h-2 rounded-full transition-all ${
               index === currentIndex
-                ? 'w-8 bg-mermaid-aqua-600'
-                : 'w-2 bg-mermaid-aqua-300'
+                ? 'w-8 bg-primary-600'
+                : 'w-2 bg-primary-300'
             }`}
             aria-label={`Go to exercise ${index + 1}`}
           />
@@ -307,7 +307,7 @@ export default function ExerciseCarousel({
       </div>
       
       {/* Exercise counter */}
-      <div className="text-center mt-4 text-sm text-mermaid-teal-700">
+      <div className="text-center mt-4 text-sm text-secondary">
         {currentIndex + 1} of {exercises.length}
       </div>
     </div>

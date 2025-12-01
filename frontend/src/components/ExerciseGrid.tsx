@@ -16,7 +16,7 @@ export default function ExerciseGrid({
 }: ExerciseGridProps) {
   if (exercises.length === 0) {
     return (
-      <div className="text-center py-12 text-mermaid-teal-700 animate-fade-in">
+      <div className="text-center py-12 text-secondary animate-fade-in">
         <p>No exercises found. Try adjusting your filters.</p>
       </div>
     );
@@ -28,7 +28,7 @@ export default function ExerciseGrid({
         <div
           key={exercise.id}
           onClick={() => onExerciseClick(exercise)}
-          className="bg-white/70 backdrop-blur-md rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer overflow-hidden border border-mermaid-aqua-200 card-hover animate-fade-in-up"
+          className="bg-white/70 backdrop-blur-md rounded-xl shadow-md hover:shadow-xl transition-all cursor-pointer overflow-hidden border border-border card-hover animate-fade-in-up"
           style={{ animationDelay: `${index * 0.05}s` }}
         >
           {exercise.imageUrls.length > 0 && (
@@ -41,12 +41,12 @@ export default function ExerciseGrid({
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-br from-mermaid-aqua-500/20 to-mermaid-purple-500/20 opacity-60 hover:opacity-0 transition-opacity duration-500 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20 opacity-60 hover:opacity-0 transition-opacity duration-500 pointer-events-none"></div>
             </div>
           )}
           <div className="p-4">
-            <h3 className="font-semibold text-mermaid-teal-900 mb-2">{exercise.name}</h3>
-            <div className="space-y-1 text-sm text-mermaid-teal-700 mb-3">
+            <h3 className="font-semibold text-primary mb-2">{exercise.name}</h3>
+            <div className="space-y-1 text-sm text-secondary mb-3">
               <p><span className="font-medium">Body Part:</span> <span className="capitalize">{exercise.bodyPart}</span></p>
               <p><span className="font-medium">Muscles:</span> {exercise.primaryMuscles.join(', ')}</p>
               <p><span className="font-medium">Equipment:</span> {exercise.equipment.join(', ')}</p>
@@ -57,7 +57,7 @@ export default function ExerciseGrid({
                   e.stopPropagation();
                   onExerciseClick(exercise);
                 }}
-                className="flex-1 px-3 py-2 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
+                className="flex-1 px-3 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
               >
                 View
               </button>
@@ -66,7 +66,7 @@ export default function ExerciseGrid({
                   e.stopPropagation();
                   onAddToWorkout(exercise);
                 }}
-                className="flex-1 px-3 py-2 bg-mermaid-purple-500 text-white rounded-lg hover:bg-mermaid-purple-600 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
+                className="flex-1 px-3 py-2 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
               >
                 Add
               </button>
@@ -78,8 +78,8 @@ export default function ExerciseGrid({
                   }}
                   className={`px-3 py-2 rounded-md transition-colors text-sm shadow-sm hover:shadow-md ${
                     isFavorite(exercise.id)
-                      ? 'bg-mermaid-purple-500 text-white hover:bg-mermaid-purple-600'
-                      : 'bg-mermaid-aqua-600 text-white hover:bg-mermaid-aqua-700'
+                      ? 'bg-accent-500 text-white hover:bg-accent-600'
+                      : 'bg-primary-600 text-white hover:bg-primary-700'
                   }`}
                   title={isFavorite(exercise.id) ? 'Remove from favorites' : 'Add to favorites'}
                 >

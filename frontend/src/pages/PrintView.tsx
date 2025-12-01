@@ -153,7 +153,7 @@ export default function PrintView() {
           <p className="text-slate-600 mb-4">Workout not found</p>
           <button
             onClick={() => navigate('/workouts')}
-            className="px-4 py-2 bg-mermaid-aqua-600 text-white font-semibold rounded-lg hover:bg-mermaid-aqua-700 transition-colors shadow-md"
+            className="px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md"
           >
             Back to Workouts
           </button>
@@ -170,7 +170,7 @@ export default function PrintView() {
           <p className="text-sm text-slate-500 mb-4">Add exercises to your workout to print it.</p>
           <button
             onClick={() => navigate(`/workouts/${workout.id}`)}
-            className="px-4 py-2 bg-mermaid-aqua-600 text-white font-semibold rounded-lg hover:bg-mermaid-aqua-700 transition-colors shadow-md"
+            className="px-4 py-2 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md"
           >
             Back to Workout
           </button>
@@ -240,13 +240,13 @@ export default function PrintView() {
         <div className="mb-6 print:hidden">
           <button
             onClick={() => navigate('/workouts')}
-            className="text-mermaid-aqua-600 hover:text-mermaid-aqua-700 hover:underline mb-4 inline-block transition-colors font-semibold"
+            className="text-primary-600 hover:text-primary-700 hover:underline mb-4 inline-block transition-colors font-semibold"
           >
             ← Back to Workouts
           </button>
           <button
             onClick={handlePrint}
-            className="px-6 py-3 bg-mermaid-aqua-600 text-white font-semibold rounded-lg hover:bg-mermaid-aqua-700 transition-colors shadow-md hover:shadow-lg"
+            className="px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg"
           >
             Print
           </button>

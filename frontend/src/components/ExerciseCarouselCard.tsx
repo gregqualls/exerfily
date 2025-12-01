@@ -19,7 +19,7 @@ export default function ExerciseCarouselCard({
   return (
     <div className="flex-shrink-0 w-full">
       <div
-        className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-mermaid-aqua-200 overflow-hidden"
+        className="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl border border-border overflow-hidden"
         style={{ borderRadius: '1rem' }}
       >
         {exercise.imageUrls.length > 0 && (
@@ -34,14 +34,14 @@ export default function ExerciseCarouselCard({
                 (e.target as HTMLImageElement).style.display = 'none';
               }}
             />
-            <div className={`absolute inset-0 bg-gradient-to-br from-mermaid-aqua-500/20 to-mermaid-purple-500/20 opacity-60 transition-opacity duration-500 pointer-events-none ${
+            <div className={`absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20 opacity-60 transition-opacity duration-500 pointer-events-none ${
               isActive ? 'hover:opacity-0' : ''
             }`}></div>
           </div>
         )}
         <div className="p-6">
-          <h3 className="text-2xl font-bold text-mermaid-teal-900 mb-4">{exercise.name}</h3>
-          <div className="space-y-2 text-sm text-mermaid-teal-700 mb-6">
+          <h3 className="text-2xl font-bold text-primary mb-4">{exercise.name}</h3>
+          <div className="space-y-2 text-sm text-secondary mb-6">
             <p>
               <span className="font-medium">Body Part:</span>{' '}
               <span className="capitalize">{exercise.bodyPart}</span>
@@ -68,7 +68,7 @@ export default function ExerciseCarouselCard({
                   e.stopPropagation();
                   onExerciseClick(exercise);
                 }}
-                className="flex-1 px-4 py-3 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
+                className="flex-1 px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
               >
                 View
               </button>
@@ -79,7 +79,7 @@ export default function ExerciseCarouselCard({
                   e.stopPropagation();
                   onAddToWorkout(exercise);
                 }}
-                className="flex-1 px-4 py-3 bg-mermaid-purple-500 text-white rounded-lg hover:bg-mermaid-purple-600 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
+                className="flex-1 px-4 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-all text-sm font-medium shadow-sm hover:shadow-md btn-glow"
               >
                 Add
               </button>
@@ -92,8 +92,8 @@ export default function ExerciseCarouselCard({
                 }}
                 className={`px-4 py-3 rounded-lg transition-colors text-sm shadow-sm hover:shadow-md ${
                   isFavorite(exercise.id)
-                    ? 'bg-mermaid-purple-500 text-white hover:bg-mermaid-purple-600'
-                    : 'bg-mermaid-aqua-600 text-white hover:bg-mermaid-aqua-700'
+                    ? 'bg-accent-500 text-white hover:bg-accent-600'
+                    : 'bg-primary-600 text-white hover:bg-primary-700'
                 }`}
                 title={isFavorite(exercise.id) ? 'Remove from favorites' : 'Add to favorites'}
               >

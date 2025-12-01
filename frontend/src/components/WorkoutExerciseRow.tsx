@@ -35,7 +35,7 @@ export default function WorkoutExerciseRow({
     <div className="bg-white border border-slate-200 rounded-xl p-5 space-y-4 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <h4 className="font-semibold text-lg text-mermaid-teal-900 mb-1">{exercise?.name || 'Unknown Exercise'}</h4>
+          <h4 className="font-semibold text-lg text-primary mb-1">{exercise?.name || 'Unknown Exercise'}</h4>
           {exercise && (
             <p className="text-sm text-slate-600">
               {exercise.primaryMuscles.join(', ')} • {exercise.equipment.join(', ')}
@@ -71,43 +71,43 @@ export default function WorkoutExerciseRow({
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div>
-          <label className="block text-xs font-semibold text-mermaid-teal-900 mb-2 uppercase tracking-wide">Sets</label>
+          <label className="block text-xs font-semibold text-primary mb-2 uppercase tracking-wide">Sets</label>
           <input
             type="number"
             value={workoutExercise.sets || ''}
             onChange={(e) => handleFieldChange('sets', e.target.value ? parseInt(e.target.value) : null)}
             placeholder="3"
-            className="w-full px-3 py-2 text-sm border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-mermaid-teal-900 mb-2 uppercase tracking-wide">Reps</label>
+          <label className="block text-xs font-semibold text-primary mb-2 uppercase tracking-wide">Reps</label>
           <input
             type="text"
             value={workoutExercise.reps || ''}
             onChange={(e) => handleFieldChange('reps', e.target.value || null)}
             placeholder="8-10"
-            className="w-full px-3 py-2 text-sm border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-mermaid-teal-900 mb-2 uppercase tracking-wide">Weight</label>
+          <label className="block text-xs font-semibold text-primary mb-2 uppercase tracking-wide">Weight</label>
           <input
             type="text"
             value={workoutExercise.weight || ''}
             onChange={(e) => handleFieldChange('weight', e.target.value || null)}
             placeholder="bodyweight"
-            className="w-full px-3 py-2 text-sm border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           />
         </div>
         <div>
-          <label className="block text-xs font-semibold text-mermaid-teal-900 mb-2 uppercase tracking-wide">Rest</label>
+          <label className="block text-xs font-semibold text-primary mb-2 uppercase tracking-wide">Rest</label>
           <input
             type="text"
             value={workoutExercise.rest || ''}
             onChange={(e) => handleFieldChange('rest', e.target.value || null)}
             placeholder="60s"
-            className="w-full px-3 py-2 text-sm border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function WorkoutExerciseRow({
       <div>
         <button
           onClick={() => setShowCustomTips(!showCustomTips)}
-          className="text-sm font-medium text-mermaid-aqua-600 hover:text-mermaid-aqua-700 hover:underline mb-2 transition-colors"
+          className="text-sm font-medium text-primary-600 hover:text-primary-700 hover:underline mb-2 transition-colors"
         >
           {showCustomTips ? 'Hide' : 'Show'} Custom Tips
         </button>
@@ -124,7 +124,7 @@ export default function WorkoutExerciseRow({
             value={workoutExercise.customTips || ''}
             onChange={(e) => handleFieldChange('customTips', e.target.value || null)}
             placeholder="Add your personal tips or coaching cues..."
-            className="w-full px-3 py-2 text-sm border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 text-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
             rows={3}
           />
         )}

@@ -106,10 +106,10 @@ export default function FilterBar({
   const availableEquipmentCount = getAvailableEquipment().length;
 
   return (
-    <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-md border border-mermaid-aqua-200 p-6 space-y-4 animate-fade-in-up">
+    <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-md border border-border p-6 space-y-4 animate-fade-in-up">
       <div className="flex flex-wrap gap-4 items-end">
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Search
           </label>
           <input
@@ -117,18 +117,18 @@ export default function FilterBar({
             value={searchQuery}
             onChange={handleSearchChange}
             placeholder="Search exercises..."
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           />
         </div>
 
         <div className="min-w-[150px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Body Parts
           </label>
           <select
             value={filters.bodyPart || ''}
             onChange={(e) => handleFilterChange('bodyPart', e.target.value)}
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           >
             <option value="">All</option>
             {availableBodyParts.map(part => (
@@ -138,13 +138,13 @@ export default function FilterBar({
         </div>
 
         <div className="min-w-[150px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Muscle
           </label>
           <select
             value={filters.primaryMuscle || ''}
             onChange={(e) => handleFilterChange('primaryMuscle', e.target.value)}
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           >
             <option value="">All</option>
             {availableMuscles.map(muscle => (
@@ -154,13 +154,13 @@ export default function FilterBar({
         </div>
 
         <div className="min-w-[150px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Equipment
           </label>
           <select
             value={filters.equipment || ''}
             onChange={(e) => handleFilterChange('equipment', e.target.value)}
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           >
             <option value="">All</option>
             {availableEquipment.map(eq => (
@@ -170,13 +170,13 @@ export default function FilterBar({
         </div>
 
         <div className="min-w-[150px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Level
           </label>
           <select
             value={filters.level || ''}
             onChange={(e) => handleFilterChange('level', e.target.value)}
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           >
             <option value="">All</option>
             <option value="beginner">Beginner</option>
@@ -186,13 +186,13 @@ export default function FilterBar({
         </div>
 
         <div className="min-w-[150px]">
-          <label className="block text-sm font-medium text-mermaid-teal-900 mb-1">
+          <label className="block text-sm font-medium text-primary mb-1">
             Exercise Type
           </label>
           <select
             value={filters.exerciseType || ''}
             onChange={(e) => handleFilterChange('exerciseType', e.target.value)}
-            className="w-full px-3 py-2 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+            className="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
           >
             <option value="">All</option>
             <option value="STRENGTH">Strength</option>
@@ -206,14 +206,14 @@ export default function FilterBar({
 
         <button
           onClick={clearFilters}
-          className="px-4 py-2 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+          className="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
         >
           Clear Filters
         </button>
       </div>
 
       {/* Equipment Filter Section */}
-      <div className="border-t border-mermaid-aqua-200 pt-4">
+      <div className="border-t border-border pt-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <label className="flex items-center gap-2 cursor-pointer">
@@ -221,14 +221,14 @@ export default function FilterBar({
                 type="checkbox"
                 checked={equipmentFilterEnabled}
                 onChange={(e) => handleEquipmentFilterToggle(e.target.checked)}
-                className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 rounded focus:ring-mermaid-aqua-500"
+                className="w-4 h-4 text-primary-600 border-border rounded focus:ring-primary-500"
               />
-              <span className="text-sm font-medium text-mermaid-teal-900">
+              <span className="text-sm font-medium text-primary">
                 Filter by Available Equipment
               </span>
             </label>
             {availableEquipmentCount > 0 && (
-              <span className="text-xs text-mermaid-teal-700">
+              <span className="text-xs text-secondary">
                 ({availableEquipmentCount} equipment selected)
               </span>
             )}
@@ -236,7 +236,7 @@ export default function FilterBar({
 
           {equipmentFilterEnabled && (
             <div className="flex items-center gap-4">
-              <span className="text-sm text-mermaid-teal-700">Filter mode:</span>
+              <span className="text-sm text-secondary">Filter mode:</span>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="radio"
@@ -244,9 +244,9 @@ export default function FilterBar({
                   value="any"
                   checked={equipmentFilterMode === 'any'}
                   onChange={() => handleEquipmentFilterModeChange('any')}
-                  className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 focus:ring-mermaid-aqua-500"
+                  className="w-4 h-4 text-primary-600 border-border focus:ring-primary-500"
                 />
-                <span className="text-sm text-mermaid-teal-900">Any required</span>
+                <span className="text-sm text-primary">Any required</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -255,9 +255,9 @@ export default function FilterBar({
                   value="all"
                   checked={equipmentFilterMode === 'all'}
                   onChange={() => handleEquipmentFilterModeChange('all')}
-                  className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 focus:ring-mermaid-aqua-500"
+                  className="w-4 h-4 text-primary-600 border-border focus:ring-primary-500"
                 />
-                <span className="text-sm text-mermaid-teal-700">All required</span>
+                <span className="text-sm text-secondary">All required</span>
               </label>
             </div>
           )}

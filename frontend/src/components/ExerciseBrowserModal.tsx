@@ -243,28 +243,28 @@ export default function ExerciseBrowserModal({
         onClick={onClose}
       >
         <div
-        className="bg-white/95 backdrop-blur-md rounded-xl max-w-7xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-mermaid-aqua-200"
+        className="bg-white/95 backdrop-blur-md rounded-xl max-w-7xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-border"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-mermaid-aqua-200 p-6 z-10">
+        <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border p-6 z-10">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-mermaid-teal-900">Select Exercise</h2>
+            <h2 className="text-2xl font-bold text-primary">Select Exercise</h2>
             <button
               onClick={onClose}
-              className="text-mermaid-teal-600 hover:text-mermaid-aqua-600 text-2xl transition-colors"
+              className="text-secondary hover:text-primary-600 text-2xl transition-colors"
             >
                 ×
               </button>
             </div>
             
             {/* Tabs */}
-            <div className="flex gap-2 mb-4 border-b border-mermaid-aqua-200">
+            <div className="flex gap-2 mb-4 border-b border-border">
               <button
                 onClick={() => setActiveTab('browse')}
                 className={`px-4 py-2 font-medium text-sm transition-all border-b-2 ${
                   activeTab === 'browse'
-                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600'
-                    : 'border-transparent text-mermaid-teal-700 hover:text-mermaid-aqua-600'
+                    ? 'border-primary-600 text-primary-600'
+                    : 'border-transparent text-secondary hover:text-primary-600'
                 }`}
               >
                 Browse All
@@ -273,8 +273,8 @@ export default function ExerciseBrowserModal({
                 onClick={() => setActiveTab('favorites')}
                 className={`px-4 py-2 font-medium text-sm transition-all border-b-2 ${
                   activeTab === 'favorites'
-                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600'
-                    : 'border-transparent text-mermaid-teal-700 hover:text-mermaid-aqua-600'
+                    ? 'border-primary-600 text-primary-600'
+                    : 'border-transparent text-secondary hover:text-primary-600'
                 }`}
               >
                 Favorites ({getFavoriteExerciseIds().length})
@@ -298,7 +298,7 @@ export default function ExerciseBrowserModal({
               <>
                 {loading && (
                   <div className="text-center py-12">
-                    <p className="text-mermaid-teal-600">Loading exercises...</p>
+                    <p className="text-secondary">Loading exercises...</p>
                   </div>
                 )}
 
@@ -322,7 +322,7 @@ export default function ExerciseBrowserModal({
               <>
                 {loadingFavorites && (
                   <div className="text-center py-12">
-                    <p className="text-mermaid-teal-600">Loading favorites...</p>
+                    <p className="text-secondary">Loading favorites...</p>
                   </div>
                 )}
 
@@ -337,7 +337,7 @@ export default function ExerciseBrowserModal({
                     <div className="mb-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-16 w-16 mx-auto text-mermaid-purple-400"
+                        className="h-16 w-16 mx-auto text-accent-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -350,8 +350,8 @@ export default function ExerciseBrowserModal({
                         />
                       </svg>
                     </div>
-                    <p className="text-mermaid-teal-700 text-lg mb-2">No favorites yet</p>
-                    <p className="text-mermaid-teal-600">
+                    <p className="text-secondary text-lg mb-2">No favorites yet</p>
+                    <p className="text-secondary">
                       Browse exercises and click the heart icon to add them to your favorites
                     </p>
                   </div>

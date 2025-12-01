@@ -198,7 +198,7 @@ export default function WorkoutDetailPage() {
     <div className="min-h-screen page-enter">
       <div className="max-w-5xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <Link to="/workouts" className="text-mermaid-aqua-600 hover:text-mermaid-aqua-700 hover:underline mb-4 inline-block font-medium transition-colors">
+          <Link to="/workouts" className="text-primary-600 hover:text-primary-700 hover:underline mb-4 inline-block font-medium transition-colors">
             ← Back to Workouts
           </Link>
           <input
@@ -206,14 +206,14 @@ export default function WorkoutDetailPage() {
             type="text"
             value={workout.name}
             onChange={(e) => handleWorkoutNameChange(e.target.value)}
-            className="text-4xl font-bold text-mermaid-teal-900 bg-white border-2 border-mermaid-aqua-300 p-3 focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 rounded-lg w-full shadow-sm"
+            className="text-4xl font-bold text-primary bg-white border-2 border-border p-3 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 rounded-lg w-full shadow-sm"
             placeholder="Workout Name"
           />
           <textarea
             value={workout.description}
             onChange={(e) => handleWorkoutDescriptionChange(e.target.value)}
             placeholder="Add a description for this workout..."
-            className="w-full mt-4 px-4 py-3 border border-mermaid-aqua-300 rounded-lg text-mermaid-teal-900 bg-white focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 transition-all"
+            className="w-full mt-4 px-4 py-3 border border-border rounded-lg text-primary bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
             rows={2}
           />
         </div>
@@ -228,10 +228,10 @@ export default function WorkoutDetailPage() {
 
           <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-semibold text-mermaid-teal-900">Exercises</h3>
+              <h3 className="text-xl font-semibold text-primary">Exercises</h3>
               <button
                 onClick={handleAddExercise}
-                className="px-5 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+                className="px-5 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
               >
                 + Add Exercise
               </button>
@@ -248,7 +248,7 @@ export default function WorkoutDetailPage() {
                 <p className="text-slate-500 mb-6 text-sm">Click "Add Exercise" to start building your workout</p>
                 <button
                   onClick={handleAddExercise}
-                  className="px-6 py-3 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-md hover:shadow-lg"
+                  className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-md hover:shadow-lg"
                 >
                   Add Your First Exercise
                 </button>
@@ -280,7 +280,7 @@ export default function WorkoutDetailPage() {
           <div className="flex gap-3">
             <button
               onClick={handlePrintWorkout}
-              className="px-6 py-3 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-md hover:shadow-lg"
+              className="px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-md hover:shadow-lg"
             >
               Print Workout
             </button>

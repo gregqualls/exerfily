@@ -181,7 +181,7 @@ export default function FavoritesPage() {
       <div className="min-h-screen page-enter">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center py-12">
-            <p className="text-mermaid-teal-700">Loading favorites...</p>
+            <p className="text-secondary">Loading favorites...</p>
           </div>
         </div>
       </div>
@@ -192,9 +192,9 @@ export default function FavoritesPage() {
     <div className="min-h-screen page-enter">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6 animate-fade-in-up">
-          <h1 className="text-4xl font-bold text-mermaid-teal-900">Favorites</h1>
+          <h1 className="text-4xl font-bold text-primary">Favorites</h1>
           {exercises.length > 0 && (
-            <p className="text-mermaid-teal-600">
+            <p className="text-secondary">
               {filteredExercises.length} of {exercises.length} favorite{exercises.length !== 1 ? 's' : ''}
             </p>
           )}
@@ -221,7 +221,7 @@ export default function FavoritesPage() {
             <div className="mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 mx-auto text-mermaid-purple-400"
+                className="h-16 w-16 mx-auto text-accent-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -234,8 +234,8 @@ export default function FavoritesPage() {
                 />
               </svg>
             </div>
-            <p className="text-mermaid-teal-700 text-lg mb-2">No favorites yet</p>
-            <p className="text-mermaid-teal-600">
+            <p className="text-secondary text-lg mb-2">No favorites yet</p>
+            <p className="text-secondary">
               Browse exercises and click the heart icon to add them to your favorites
             </p>
           </div>
@@ -245,8 +245,8 @@ export default function FavoritesPage() {
           <div className="mt-6">
             {filteredExercises.length === 0 ? (
               <div className="text-center py-12 animate-fade-in">
-                <p className="text-mermaid-teal-700 text-lg mb-2">No favorites match your filters</p>
-                <p className="text-mermaid-teal-600">Try adjusting your filter criteria</p>
+                <p className="text-secondary text-lg mb-2">No favorites match your filters</p>
+                <p className="text-secondary">Try adjusting your filter criteria</p>
               </div>
             ) : (
               <ExerciseGrid

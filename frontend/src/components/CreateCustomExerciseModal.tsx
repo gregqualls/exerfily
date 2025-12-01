@@ -63,14 +63,14 @@ export default function CreateCustomExerciseModal({
       onClick={onClose}
     >
       <div
-        className="bg-white/95 backdrop-blur-md rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-mermaid-aqua-200"
+        className="bg-white/95 backdrop-blur-md rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-border"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-mermaid-aqua-200 p-6 flex justify-between items-center z-10">
-          <h2 className="text-2xl font-bold text-mermaid-teal-900">Create Custom Exercise</h2>
+        <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-border p-6 flex justify-between items-center z-10">
+          <h2 className="text-2xl font-bold text-primary">Create Custom Exercise</h2>
           <button
             onClick={onClose}
-            className="text-mermaid-teal-600 hover:text-mermaid-aqua-600 text-2xl transition-colors"
+            className="text-secondary hover:text-primary-600 text-2xl transition-colors"
           >
             ×
           </button>
@@ -78,7 +78,7 @@ export default function CreateCustomExerciseModal({
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+            <label className="block text-sm font-semibold text-secondary mb-2">
               Exercise Name *
             </label>
             <input
@@ -86,86 +86,86 @@ export default function CreateCustomExerciseModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+              className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               placeholder="e.g., Custom Push-up Variation"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+            <label className="block text-sm font-semibold text-secondary mb-2">
               Description
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={3}
-              className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+              className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               placeholder="Brief description of the exercise"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+              <label className="block text-sm font-semibold text-secondary mb-2">
                 Body Part
               </label>
               <input
                 type="text"
                 value={bodyPart}
                 onChange={(e) => setBodyPart(e.target.value)}
-                className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
                 placeholder="e.g., chest"
               />
             </div>
             <div>
-              <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+              <label className="block text-sm font-semibold text-secondary mb-2">
                 Equipment (comma-separated)
               </label>
               <input
                 type="text"
                 value={equipment}
                 onChange={(e) => setEquipment(e.target.value)}
-                className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+                className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
                 placeholder="e.g., bodyweight, dumbbell"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+            <label className="block text-sm font-semibold text-secondary mb-2">
               Primary Muscles (comma-separated)
             </label>
             <input
               type="text"
               value={primaryMuscles}
               onChange={(e) => setPrimaryMuscles(e.target.value)}
-              className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+              className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               placeholder="e.g., pectorals, triceps"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+            <label className="block text-sm font-semibold text-secondary mb-2">
               Instructions (one per line)
             </label>
             <textarea
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
               rows={5}
-              className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+              className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               placeholder="Step 1: ...&#10;Step 2: ..."
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
+            <label className="block text-sm font-semibold text-secondary mb-2">
               Image URL (optional)
             </label>
             <input
               type="url"
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
-              className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
+              className="w-full px-4 py-2.5 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white text-primary transition-all"
               placeholder="https://example.com/image.jpg"
             />
           </div>
@@ -174,13 +174,13 @@ export default function CreateCustomExerciseModal({
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 bg-mermaid-teal-600 text-white rounded-lg hover:bg-mermaid-teal-700 transition-all font-medium shadow-sm"
+              className="flex-1 px-4 py-2.5 bg-secondary-600 text-white rounded-lg hover:bg-secondary-700 transition-all font-medium shadow-sm"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
+              className="flex-1 px-4 py-2.5 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-all font-medium shadow-sm hover:shadow-md"
             >
               Create Exercise
             </button>
