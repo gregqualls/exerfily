@@ -4,7 +4,6 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -47,19 +46,6 @@ export default {
             900: '#4A148C',
           },
         },
-        // Mermaidcore Dark Mode Colors
-        midnight: {
-          50: '#0A1929',
-          100: '#0F1F35',
-          200: '#1A2F4A',
-          300: '#1E3A5F',
-          400: '#234574',
-          500: '#285089',
-          600: '#2D5B9E',
-          700: '#3266B3',
-          800: '#3771C8',
-          900: '#3C7CDD',
-        },
         silver: {
           50: '#FAFAFA',
           100: '#F5F5F5',
@@ -75,7 +61,6 @@ export default {
       },
       backgroundImage: {
         'mermaid-light': 'linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 25%, #80DEEA 50%, #B19CD9 75%, #C8A2C8 100%)',
-        'mermaid-dark': 'linear-gradient(135deg, #0A1929 0%, #1A2F4A 25%, #0D47A1 50%, #1565C0 75%, #1E88E5 100%)',
         'mermaid-shimmer': 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)',
       },
       animation: {

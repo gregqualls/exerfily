@@ -243,28 +243,28 @@ export default function ExerciseBrowserModal({
         onClick={onClose}
       >
         <div
-        className="bg-white/95 dark:bg-midnight-800/95 backdrop-blur-md rounded-xl max-w-7xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-mermaid-aqua-200 dark:border-midnight-700"
+        className="bg-white/95 backdrop-blur-md rounded-xl max-w-7xl w-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-mermaid-aqua-200"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-white/95 dark:bg-midnight-800/95 backdrop-blur-md border-b border-mermaid-aqua-200 dark:border-midnight-700 p-6 z-10">
+        <div className="sticky top-0 bg-white/95 backdrop-blur-md border-b border-mermaid-aqua-200 p-6 z-10">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-mermaid-teal-900 dark:text-silver-100">Select Exercise</h2>
+            <h2 className="text-2xl font-bold text-mermaid-teal-900">Select Exercise</h2>
             <button
               onClick={onClose}
-              className="text-mermaid-teal-600 dark:text-silver-400 hover:text-mermaid-aqua-600 dark:hover:text-silver-200 text-2xl transition-colors"
+              className="text-mermaid-teal-600 hover:text-mermaid-aqua-600 text-2xl transition-colors"
             >
                 ×
               </button>
             </div>
             
             {/* Tabs */}
-            <div className="flex gap-2 mb-4 border-b border-mermaid-aqua-200 dark:border-midnight-700">
+            <div className="flex gap-2 mb-4 border-b border-mermaid-aqua-200">
               <button
                 onClick={() => setActiveTab('browse')}
                 className={`px-4 py-2 font-medium text-sm transition-all border-b-2 ${
                   activeTab === 'browse'
-                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600 dark:text-mermaid-aqua-400 dark:border-mermaid-aqua-400'
-                    : 'border-transparent text-mermaid-teal-700 dark:text-silver-400 hover:text-mermaid-aqua-600 dark:hover:text-mermaid-aqua-400'
+                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600'
+                    : 'border-transparent text-mermaid-teal-700 hover:text-mermaid-aqua-600'
                 }`}
               >
                 Browse All
@@ -273,8 +273,8 @@ export default function ExerciseBrowserModal({
                 onClick={() => setActiveTab('favorites')}
                 className={`px-4 py-2 font-medium text-sm transition-all border-b-2 ${
                   activeTab === 'favorites'
-                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600 dark:text-mermaid-aqua-400 dark:border-mermaid-aqua-400'
-                    : 'border-transparent text-mermaid-teal-700 dark:text-silver-400 hover:text-mermaid-aqua-600 dark:hover:text-mermaid-aqua-400'
+                    ? 'border-mermaid-aqua-600 text-mermaid-aqua-600'
+                    : 'border-transparent text-mermaid-teal-700 hover:text-mermaid-aqua-600'
                 }`}
               >
                 Favorites ({getFavoriteExerciseIds().length})
@@ -298,12 +298,12 @@ export default function ExerciseBrowserModal({
               <>
                 {loading && (
                   <div className="text-center py-12">
-                    <p className="text-mermaid-teal-600 dark:text-silver-400">Loading exercises...</p>
+                    <p className="text-mermaid-teal-600">Loading exercises...</p>
                   </div>
                 )}
 
                 {error && (
-                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg mb-4">
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
                     {error}
                   </div>
                 )}
@@ -322,12 +322,12 @@ export default function ExerciseBrowserModal({
               <>
                 {loadingFavorites && (
                   <div className="text-center py-12">
-                    <p className="text-mermaid-teal-600 dark:text-silver-400">Loading favorites...</p>
+                    <p className="text-mermaid-teal-600">Loading favorites...</p>
                   </div>
                 )}
 
                 {error && (
-                  <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg mb-4">
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
                     {error}
                   </div>
                 )}
@@ -337,7 +337,7 @@ export default function ExerciseBrowserModal({
                     <div className="mb-4">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-16 w-16 mx-auto text-mermaid-purple-400 dark:text-mermaid-purple-500"
+                        className="h-16 w-16 mx-auto text-mermaid-purple-400"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -350,8 +350,8 @@ export default function ExerciseBrowserModal({
                         />
                       </svg>
                     </div>
-                    <p className="text-mermaid-teal-700 dark:text-silver-400 text-lg mb-2">No favorites yet</p>
-                    <p className="text-mermaid-teal-600 dark:text-silver-500">
+                    <p className="text-mermaid-teal-700 text-lg mb-2">No favorites yet</p>
+                    <p className="text-mermaid-teal-600">
                       Browse exercises and click the heart icon to add them to your favorites
                     </p>
                   </div>

@@ -49,8 +49,8 @@ export default function WorkoutsPage() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-mermaid-teal-900 dark:text-silver-100 mb-2">Workouts</h1>
-            <p className="text-mermaid-teal-600 dark:text-silver-400">Create and manage your workout routines</p>
+            <h1 className="text-4xl font-bold text-mermaid-teal-900 mb-2">Workouts</h1>
+            <p className="text-mermaid-teal-600">Create and manage your workout routines</p>
           </div>
           <button
             onClick={handleCreateWorkout}
@@ -61,14 +61,14 @@ export default function WorkoutsPage() {
         </div>
 
         {workouts.length === 0 ? (
-          <div className="bg-white/70 dark:bg-midnight-800/70 backdrop-blur-md rounded-xl shadow-lg border border-mermaid-aqua-200 dark:border-midnight-700 p-16 text-center">
+          <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-lg border border-mermaid-aqua-200 p-16 text-center">
             <div className="mb-6">
-              <svg className="mx-auto h-20 w-20 text-mermaid-aqua-400 dark:text-mermaid-aqua-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="mx-auto h-20 w-20 text-mermaid-aqua-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-mermaid-teal-900 dark:text-silver-100 mb-3">No workouts yet</h2>
-            <p className="text-mermaid-teal-600 dark:text-silver-400 mb-8 text-lg">Create your first workout to get started!</p>
+            <h2 className="text-2xl font-bold text-mermaid-teal-900 mb-3">No workouts yet</h2>
+            <p className="text-mermaid-teal-600 mb-8 text-lg">Create your first workout to get started!</p>
             <button
               onClick={handleCreateWorkout}
               className="px-8 py-4 bg-mermaid-purple-500 text-white rounded-lg hover:bg-mermaid-purple-600 transition-all font-semibold shadow-lg hover:shadow-xl text-lg"
@@ -79,15 +79,15 @@ export default function WorkoutsPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {workouts.map(workout => (
-              <div key={workout.id} className="bg-white/70 dark:bg-midnight-800/70 backdrop-blur-md rounded-xl shadow-md hover:shadow-xl transition-all border border-mermaid-aqua-200 dark:border-midnight-700 overflow-hidden group">
+              <div key={workout.id} className="bg-white/70 backdrop-blur-md rounded-xl shadow-md hover:shadow-xl transition-all border border-mermaid-aqua-200 overflow-hidden group">
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-mermaid-teal-900 dark:text-silver-100 mb-2 group-hover:text-mermaid-aqua-600 dark:group-hover:text-mermaid-aqua-400 transition-colors">
+                  <h3 className="text-xl font-semibold text-mermaid-teal-900 mb-2 group-hover:text-mermaid-aqua-600 transition-colors">
                     {workout.name}
                   </h3>
                   {workout.description && (
-                    <p className="text-mermaid-teal-600 dark:text-silver-400 text-sm mb-4 line-clamp-2">{workout.description}</p>
+                    <p className="text-mermaid-teal-600 text-sm mb-4 line-clamp-2">{workout.description}</p>
                   )}
-                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm mb-6">
+                  <div className="flex items-center gap-2 text-slate-500 text-sm mb-6">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                     </svg>
@@ -96,7 +96,7 @@ export default function WorkoutsPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => navigate(`/workouts/${workout.id}`)}
-                      className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 dark:bg-mermaid-aqua-500 text-white rounded-lg hover:bg-mermaid-aqua-700 dark:hover:bg-mermaid-aqua-600 transition-all text-sm font-medium shadow-sm hover:shadow-md"
+                      className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all text-sm font-medium shadow-sm hover:shadow-md"
                     >
                       Open
                     </button>
@@ -111,7 +111,7 @@ export default function WorkoutsPage() {
                     </button>
                     <button
                       onClick={() => handleDuplicate(workout)}
-                      className="px-4 py-2.5 bg-midnight-600 dark:bg-midnight-700 text-white dark:text-silver-100 rounded-lg hover:bg-midnight-500 dark:hover:bg-midnight-600 transition-all text-sm font-medium shadow-sm"
+                      className="px-4 py-2.5 bg-mermaid-teal-600 text-white rounded-lg hover:bg-mermaid-teal-700 transition-all text-sm font-medium shadow-sm"
                       title="Duplicate workout"
                     >
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -120,7 +120,7 @@ export default function WorkoutsPage() {
                     </button>
                     <button
                       onClick={() => handleDelete(workout.id)}
-                      className="px-4 py-2.5 bg-red-500 dark:bg-red-600 text-white rounded-lg hover:bg-red-600 dark:hover:bg-red-700 transition-all text-sm font-medium shadow-sm hover:shadow-md"
+                      className="px-4 py-2.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all text-sm font-medium shadow-sm hover:shadow-md"
                       title="Delete workout"
                     >
                       <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

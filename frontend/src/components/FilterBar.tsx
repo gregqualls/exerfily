@@ -257,7 +257,7 @@ export default function FilterBar({
                   onChange={() => handleEquipmentFilterModeChange('all')}
                   className="w-4 h-4 text-mermaid-aqua-600 border-mermaid-aqua-300 focus:ring-mermaid-aqua-500"
                 />
-                <span className="text-sm text-mermaid-teal-700 dark:text-silver-300">All required</span>
+                <span className="text-sm text-mermaid-teal-700">All required</span>
               </label>
             </div>
           )}

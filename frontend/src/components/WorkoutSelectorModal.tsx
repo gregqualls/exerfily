@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { getWorkouts, saveWorkout } from '../services/workoutStorage';
-import { useTheme } from '../contexts/ThemeContext';
 import type { Workout, Exercise, WorkoutExercise } from '../types';
 
 interface WorkoutSelectorModalProps {
@@ -16,16 +15,10 @@ export default function WorkoutSelectorModal({
   exercise,
   onExerciseAdded
 }: WorkoutSelectorModalProps) {
-  const { theme } = useTheme();
   const [workouts] = useState<Workout[]>(getWorkouts());
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<string>('');
   const [newWorkoutName, setNewWorkoutName] = useState('');
   const [showNewWorkout, setShowNewWorkout] = useState(false);
-  
-  // Determine text colors based on theme
-  const titleColor = theme === 'dark' ? '#ffffff' : '#0f172a';
-  const selectTextColor = theme === 'dark' ? '#ffffff' : '#0f172a';
-  const placeholderColor = theme === 'dark' ? '#94a3b8' : '#64748b';
 
   if (!isOpen || !exercise) return null;
 
@@ -79,10 +72,10 @@ export default function WorkoutSelectorModal({
       onClick={onClose}
     >
       <div
-        className="bg-white/95 dark:bg-midnight-800/95 backdrop-blur-md rounded-xl max-w-md w-full p-6 shadow-2xl border border-mermaid-aqua-200 dark:border-midnight-700"
+        className="bg-white/95 backdrop-blur-md rounded-xl max-w-md w-full p-6 shadow-2xl border border-mermaid-aqua-200"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold mb-6" style={{ color: titleColor }}>
+        <h2 className="text-2xl font-bold mb-6 text-mermaid-teal-900">
           Add {exercise.name} to Workout
         </h2>
 
@@ -90,24 +83,23 @@ export default function WorkoutSelectorModal({
           {!showNewWorkout ? (
             <>
               <div>
-                <label className="block text-sm font-semibold text-mermaid-teal-700 dark:text-silver-300 mb-2">
+                <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
                   Select Workout
                 </label>
                 <select
                   value={selectedWorkoutId}
                   onChange={(e) => setSelectedWorkoutId(e.target.value)}
-                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 dark:border-midnight-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white dark:bg-midnight-700 transition-all"
-                  style={{ color: selectTextColor }}
+                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
                 >
-                  <option value="" style={{ color: placeholderColor }}>Choose a workout...</option>
+                  <option value="" className="text-mermaid-teal-600">Choose a workout...</option>
                   {workouts.map(w => (
-                    <option key={w.id} value={w.id} style={{ color: selectTextColor }}>{w.name}</option>
+                    <option key={w.id} value={w.id} className="text-mermaid-teal-900">{w.name}</option>
                   ))}
                 </select>
               </div>
               <button
                 onClick={() => setShowNewWorkout(true)}
-                className="text-sm font-medium text-mermaid-aqua-600 dark:text-mermaid-aqua-400 hover:text-mermaid-aqua-700 dark:hover:text-mermaid-aqua-300 hover:underline transition-colors"
+                className="text-sm font-medium text-mermaid-aqua-600 hover:text-mermaid-aqua-700 hover:underline transition-colors"
               >
                 + Create New Workout
               </button>
@@ -115,7 +107,7 @@ export default function WorkoutSelectorModal({
           ) : (
             <>
               <div>
-                <label className="block text-sm font-semibold text-mermaid-teal-700 dark:text-silver-300 mb-2">
+                <label className="block text-sm font-semibold text-mermaid-teal-700 mb-2">
                   Workout Name
                 </label>
                 <input
@@ -123,7 +115,7 @@ export default function WorkoutSelectorModal({
                   value={newWorkoutName}
                   onChange={(e) => setNewWorkoutName(e.target.value)}
                   placeholder="Enter workout name"
-                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 dark:border-midnight-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white dark:bg-midnight-700 text-mermaid-teal-900 dark:text-white transition-all"
+                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white text-mermaid-teal-900 transition-all"
                   autoFocus
                 />
               </div>
@@ -132,23 +124,23 @@ export default function WorkoutSelectorModal({
                   setShowNewWorkout(false);
                   setNewWorkoutName('');
                 }}
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:underline transition-colors"
+                className="text-sm text-slate-600 hover:text-slate-700 hover:underline transition-colors"
               >
                 ← Back to select workout
               </button>
             </>
           )}
 
-          <div className="flex gap-3 pt-4 border-t border-mermaid-aqua-200 dark:border-midnight-700">
+          <div className="flex gap-3 pt-4 border-t border-mermaid-aqua-200">
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2.5 bg-midnight-600 dark:bg-midnight-700 text-white dark:text-silver-100 rounded-lg hover:bg-midnight-500 dark:hover:bg-midnight-600 transition-colors font-medium shadow-sm"
+              className="flex-1 px-4 py-2.5 bg-mermaid-teal-600 text-white rounded-lg hover:bg-mermaid-teal-700 transition-colors font-medium shadow-sm"
             >
               Cancel
             </button>
             <button
               onClick={handleAdd}
-              className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 dark:bg-mermaid-aqua-500 text-white rounded-lg hover:bg-mermaid-aqua-700 dark:hover:bg-mermaid-aqua-600 transition-all font-medium shadow-sm hover:shadow-md"
+              className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 text-white rounded-lg hover:bg-mermaid-aqua-700 transition-all font-medium shadow-sm hover:shadow-md"
             >
               Add
             </button>

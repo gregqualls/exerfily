@@ -88,7 +88,7 @@ export default function FavoritesPage() {
       <div className="min-h-screen page-enter">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center py-12">
-            <p className="text-mermaid-teal-700 dark:text-silver-400">Loading favorites...</p>
+            <p className="text-mermaid-teal-700">Loading favorites...</p>
           </div>
         </div>
       </div>
@@ -99,14 +99,14 @@ export default function FavoritesPage() {
     <div className="min-h-screen page-enter">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6 animate-fade-in-up">
-          <h1 className="text-4xl font-bold text-mermaid-teal-900 dark:text-silver-100">Favorites</h1>
+          <h1 className="text-4xl font-bold text-mermaid-teal-900">Favorites</h1>
           {exercises.length > 0 && (
-            <p className="text-mermaid-teal-600 dark:text-silver-400">{exercises.length} favorite{exercises.length !== 1 ? 's' : ''}</p>
+            <p className="text-mermaid-teal-600">{exercises.length} favorite{exercises.length !== 1 ? 's' : ''}</p>
           )}
         </div>
 
         {error && (
-          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg mb-4 animate-fade-in">
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 animate-fade-in">
             {error}
           </div>
         )}
@@ -116,7 +116,7 @@ export default function FavoritesPage() {
             <div className="mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 mx-auto text-mermaid-purple-400 dark:text-mermaid-purple-500"
+                className="h-16 w-16 mx-auto text-mermaid-purple-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -129,8 +129,8 @@ export default function FavoritesPage() {
                 />
               </svg>
             </div>
-            <p className="text-mermaid-teal-700 dark:text-silver-400 text-lg mb-2">No favorites yet</p>
-            <p className="text-mermaid-teal-600 dark:text-silver-500">
+            <p className="text-mermaid-teal-700 text-lg mb-2">No favorites yet</p>
+            <p className="text-mermaid-teal-600">
               Browse exercises and click the heart icon to add them to your favorites
             </p>
           </div>
