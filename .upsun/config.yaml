@@ -7,10 +7,16 @@ applications:
       root: backend
     build:
       flavor: none
+    mounts:
+      'data':
+        source: storage
+        source_path: backend/data
     hooks:
       build: |
         set -ex
         npm install --omit=dev
+        # Run initial database sync if database is empty
+        node scripts/sync-db.js || echo "Database sync failed, will retry at runtime"
     web:
       commands:
         start: npm start
