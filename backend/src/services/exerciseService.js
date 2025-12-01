@@ -417,7 +417,7 @@ export async function addExerciseFromDB(exerciseId) {
     
     // Check if exercise already exists
     const existing = db.prepare('SELECT * FROM exercises WHERE sourceId = ? OR id = ?').get(
-      `exdb_${exerciseId}`,
+      exerciseId,
       `exdb_${exerciseId}`
     );
     
