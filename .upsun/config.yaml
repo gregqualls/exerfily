@@ -17,8 +17,6 @@ applications:
           root: public
           passthru: true
           allow: false
-        '^/(api|health|exercises)':
-          passthru: true
 
   frontend:
     type: nodejs:24
