@@ -103,7 +103,7 @@ export default function NavBar() {
           </div>
         </div>
       )}
-      <nav className="sticky top-0 z-50 bg-surface backdrop-blur-sm shadow-sm border-b border-border">
+      <nav className="sticky top-0 z-50 bg-surface backdrop-blur-sm shadow-sm border-b border-border print:hidden">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-2 animate-fade-in hover:opacity-80 exerfily-logo-text">

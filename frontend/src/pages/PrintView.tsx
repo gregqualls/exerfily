@@ -235,8 +235,8 @@ export default function PrintView() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white p-8 print:p-0">
+      <div className="max-w-7xl mx-auto print:max-w-none">
         <div className="mb-6 print:hidden">
           <button
             onClick={() => navigate('/workouts')}
@@ -252,7 +252,7 @@ export default function PrintView() {
           </button>
         </div>
 
-        <div className="mb-4 print:mb-2">
+        <div className="mb-4 print:hidden print:mb-0 print:h-0 print:overflow-hidden">
           <h1 className="text-3xl font-bold text-slate-900">{workout.name}</h1>
           {workout.description && (
             <p className="text-slate-600 mt-2 print:text-sm">{workout.description}</p>
@@ -408,8 +408,15 @@ export default function PrintView() {
           body {
             background: white;
           }
+          nav {
+            display: none !important;
+          }
           .print\\:hidden {
-            display: none;
+            display: none !important;
+            height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: hidden !important;
           }
           @page {
             margin: 1cm;
@@ -417,10 +424,14 @@ export default function PrintView() {
           }
           .print-page {
             page-break-after: always;
+            page-break-before: auto;
             min-height: calc(100vh - 2cm);
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1cm;
+          }
+          .print-page:first-child {
+            page-break-before: auto;
           }
           .print-page:last-child {
             page-break-after: auto;
