@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import exerciseRoutes from './routes/exercises.js';
+import { getDb } from './db/index.js';
+import { syncExercises } from './services/syncService.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,7 +16,44 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Initialize database and check for sync on startup
+async function initializeDatabase() {
+  try {
+    console.log('Initializing database...');
+    // Initialize database connection
+    const db = getDb();
+    
+    // Check if database has any exercises
+    const exerciseCount = db.prepare('SELECT COUNT(*) as count FROM exercises').get().count;
+    
+    if (exerciseCount === 0) {
+      console.log('Database is empty, performing initial sync...');
+      const result = await syncExercises(true);
+      if (result.success) {
+        console.log(`✅ Initial sync completed: ${result.exerciseCount} exercises loaded`);
+      } else {
+        console.error('❌ Initial sync failed:', result.error);
+      }
+    } else {
+      console.log(`Database initialized with ${exerciseCount} exercises`);
+      // Check if sync is needed (non-blocking)
+      syncExercises(false).then(result => {
+        if (result.synced) {
+          console.log(`✅ Sync completed: ${result.exerciseCount} exercises in database`);
+        } else {
+          console.log(`ℹ️  Sync check: ${result.reason}`);
+        }
+      }).catch(error => {
+        console.error('Error during startup sync check:', error);
+      });
+    }
+  } catch (error) {
+    console.error('Error initializing database:', error);
+  }
+}
 
+// Start server
+app.listen(PORT, async () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+  await initializeDatabase();
+});

@@ -1,7 +1,7 @@
 export interface Exercise {
   id: string;
   name: string;
-  bodyArea: string;
+  bodyPart: string;
   primaryMuscles: string[];
   secondaryMuscles: string[];
   equipment: string[];
@@ -12,9 +12,19 @@ export interface Exercise {
   imageUrls: string[];
   sourceId: string;
   tags: string[];
+  // v2 API fields
+  exerciseId?: string; // v2's unique ID format: exr_...
+  keywords?: string[]; // for enhanced search
+  exerciseTips?: string[]; // coaching cues
+  exerciseType?: string; // STRENGTH, CARDIO, etc.
+  overview?: string; // enhanced description
+  variations?: string[]; // exercise variations
+  relatedExerciseIds?: string[]; // related exercises
+  videoUrl?: string; // video URL if available
+  gender?: string; // male/female
 }
 
-export interface SessionExercise {
+export interface WorkoutExercise {
   id: string;
   exerciseId: string;
   order: number;
@@ -26,13 +36,8 @@ export interface SessionExercise {
   customTips: string | null;
 }
 
-export interface Session {
-  id: string;
-  name: string;
-  notes: string;
-  exercises: SessionExercise[];
-  printConfigOverride?: PrintConfig;
-}
+// Legacy type alias for backward compatibility during migration
+export type SessionExercise = WorkoutExercise;
 
 export interface Workout {
   id: string;
@@ -40,7 +45,7 @@ export interface Workout {
   description: string;
   createdAt: string;
   updatedAt: string;
-  sessions: Session[];
+  exercises: WorkoutExercise[];
   printConfig?: PrintConfig;
 }
 
@@ -57,15 +62,20 @@ export interface PrintConfig {
   condenseInstructions: boolean;
 }
 
+export type EquipmentFilterMode = 'all' | 'any' | 'off';
+
 export interface ExerciseFilters {
   q?: string;
-  bodyArea?: string;
+  bodyPart?: string;
   primaryMuscle?: string;
   equipment?: string;
   level?: string;
   category?: string;
+  exerciseType?: string; // STRENGTH, CARDIO, etc.
   limit?: number;
   offset?: number;
+  equipmentFilterMode?: EquipmentFilterMode;
+  equipmentFilterEnabled?: boolean;
 }
 
 export interface ExerciseResponse {

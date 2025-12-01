@@ -1,8 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Mermaidcore Light Mode Variables */
+  --mermaid-aqua: #00BCD4;
+  --mermaid-teal: #009688;
+  --mermaid-purple: #9C27B0;
+  --mermaid-bg-start: #E0F7FA;
+  --mermaid-bg-end: #C8A2C8;
+  --mermaid-text-primary: #006064;
+  --mermaid-text-secondary: #00838F;
+}
+
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Mermaidcore background gradients - fixed viewport layer that doesn't stretch */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #E0F7FA 0%, #B2EBF2 20%, #80DEEA 40%, #4DD0E1 60%, #B19CD9 80%, #C8A2C8 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+body {
+  background: transparent !important;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+.mermaid-bg {
+  background: transparent !important;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* Display font for headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Righteous', cursive;
+  letter-spacing: 0.02em;
+  color: #006064;
+}
+
+/* Ensure body text is visible */
+body {
+  color: #006064;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, opacity, transform, filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Shimmer effect utility */
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Iridescent effect */
+.iridescent {
+  background: linear-gradient(135deg, #00BCD4 0%, #009688 25%, #9C27B0 50%, #BA68C8 75%, #00BCD4 100%);
+  background-size: 200% 200%;
+  animation: shimmer 3s ease infinite;
+}
+
+/* Page fade-in animation */
+.page-enter {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 188, 212, 0.2);
+}
+
+/* Button glow effect */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-glow:hover::before {
+  left: 100%;
+}
+
+/* Mermaidcore button styles - iridescent gradients with subtle hover effects */
+button[class*="bg-mermaid-aqua-600"],
+button[class*="bg-mermaid-aqua-500"],
+button[class*="bg-mermaid-aqua-700"],
+a[class*="bg-mermaid-aqua-600"],
+a[class*="bg-mermaid-aqua-500"],
+a[class*="bg-mermaid-aqua-700"] {
+  background: linear-gradient(135deg, #00BCD4 0%, #00ACC1 30%, #4DD0E1 60%, #26C6DA 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 
+    0 2px 6px rgba(0, 188, 212, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: scale(1);
+}
+
+button[class*="bg-mermaid-aqua-600"]::before,
+button[class*="bg-mermaid-aqua-500"]::before,
+button[class*="bg-mermaid-aqua-700"]::before,
+a[class*="bg-mermaid-aqua-600"]::before,
+a[class*="bg-mermaid-aqua-500"]::before,
+a[class*="bg-mermaid-aqua-700"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+button[class*="bg-mermaid-aqua-600"] > *,
+button[class*="bg-mermaid-aqua-500"] > *,
+button[class*="bg-mermaid-aqua-700"] > *,
+a[class*="bg-mermaid-aqua-600"] > *,
+a[class*="bg-mermaid-aqua-500"] > *,
+a[class*="bg-mermaid-aqua-700"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+button[class*="bg-mermaid-aqua-600"]:hover,
+button[class*="bg-mermaid-aqua-500"]:hover,
+button[class*="bg-mermaid-aqua-700"]:hover,
+a[class*="bg-mermaid-aqua-600"]:hover,
+a[class*="bg-mermaid-aqua-500"]:hover,
+a[class*="bg-mermaid-aqua-700"]:hover {
+  box-shadow: 
+    0 3px 12px rgba(0, 188, 212, 0.3),
+    0 1px 4px rgba(0, 172, 193, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
+  transform: scale(1.02) translateY(-1px);
+  background: linear-gradient(135deg, #00BCD4 0%, #4DD0E1 25%, #00ACC1 50%, #26C6DA 75%, #00BCD4 100%) !important;
+  background-size: 200% 200% !important;
+  animation: shimmer-gradient 2s ease !important;
+}
+
+button[class*="bg-mermaid-aqua-600"]:hover::before,
+button[class*="bg-mermaid-aqua-500"]:hover::before,
+button[class*="bg-mermaid-aqua-700"]:hover::before,
+a[class*="bg-mermaid-aqua-600"]:hover::before,
+a[class*="bg-mermaid-aqua-500"]:hover::before,
+a[class*="bg-mermaid-aqua-700"]:hover::before {
+  left: 100%;
+}
+
+button[class*="bg-mermaid-aqua-600"]:active,
+button[class*="bg-mermaid-aqua-500"]:active,
+button[class*="bg-mermaid-aqua-700"]:active,
+a[class*="bg-mermaid-aqua-600"]:active,
+a[class*="bg-mermaid-aqua-500"]:active,
+a[class*="bg-mermaid-aqua-700"]:active {
+  transform: scale(0.98);
+  box-shadow: 
+    0 1px 3px rgba(0, 188, 212, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+
+/* Midnight buttons with deep blue gradients */
+button[class*="bg-midnight-600"],
+button[class*="bg-midnight-700"],
+a[class*="bg-midnight-600"],
+a[class*="bg-midnight-700"] {
+  background: linear-gradient(135deg, #1A2F4A 0%, #234574 35%, #285089 70%, #2D5B9E 100%) !important;
+  color: #E0E0E0 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 
+    0 2px 6px rgba(26, 47, 74, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(178, 235, 242, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: scale(1);
+}
+
+button[class*="bg-midnight-600"]::before,
+button[class*="bg-midnight-700"]::before,
+a[class*="bg-midnight-600"]::before,
+a[class*="bg-midnight-700"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(178, 235, 242, 0.12), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+button[class*="bg-midnight-600"] > *,
+button[class*="bg-midnight-700"] > *,
+a[class*="bg-midnight-600"] > *,
+a[class*="bg-midnight-700"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+button[class*="bg-midnight-600"]:hover,
+button[class*="bg-midnight-700"]:hover,
+a[class*="bg-midnight-600"]:hover,
+a[class*="bg-midnight-700"]:hover {
+  box-shadow: 
+    0 3px 12px rgba(26, 47, 74, 0.4),
+    0 1px 4px rgba(35, 69, 116, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15) !important;
+  transform: scale(1.02) translateY(-1px);
+  background: linear-gradient(135deg, #234574 0%, #285089 30%, #2D5B9E 60%, #3266B3 100%) !important;
+  background-size: 200% 200% !important;
+  animation: shimmer-gradient 2.5s ease !important;
+}
+
+button[class*="bg-midnight-600"]:hover::before,
+button[class*="bg-midnight-700"]:hover::before,
+a[class*="bg-midnight-600"]:hover::before,
+a[class*="bg-midnight-700"]:hover::before {
+  left: 100%;
+}
+
+button[class*="bg-midnight-600"]:active,
+button[class*="bg-midnight-700"]:active,
+a[class*="bg-midnight-600"]:active,
+a[class*="bg-midnight-700"]:active {
+  transform: scale(0.98);
+  box-shadow: 
+    0 1px 3px rgba(26, 47, 74, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15) !important;
+}
+
+
+/* Purple buttons for favorites/special actions */
+button[class*="bg-mermaid-purple"],
+a[class*="bg-mermaid-purple"] {
+  background: linear-gradient(135deg, #9C27B0 0%, #AB47BC 30%, #BA68C8 60%, #CE93D8 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 
+    0 2px 6px rgba(156, 39, 176, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transform: scale(1);
+}
+
+button[class*="bg-mermaid-purple"]::before,
+a[class*="bg-mermaid-purple"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+button[class*="bg-mermaid-purple"] > *,
+a[class*="bg-mermaid-purple"] > * {
+  position: relative;
+  z-index: 2;
+}
+
+button[class*="bg-mermaid-purple"]:hover,
+a[class*="bg-mermaid-purple"]:hover {
+  box-shadow: 
+    0 3px 12px rgba(156, 39, 176, 0.3),
+    0 1px 4px rgba(171, 71, 188, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08) !important;
+  transform: scale(1.02) translateY(-1px);
+  background: linear-gradient(135deg, #9C27B0 0%, #BA68C8 25%, #AB47BC 50%, #CE93D8 75%, #9C27B0 100%) !important;
+  background-size: 200% 200% !important;
+  animation: shimmer-gradient 2.2s ease !important;
+}
+
+button[class*="bg-mermaid-purple"]:hover::before,
+a[class*="bg-mermaid-purple"]:hover::before {
+  left: 100%;
+}
+
+button[class*="bg-mermaid-purple"]:active,
+a[class*="bg-mermaid-purple"]:active {
+  transform: scale(0.98);
+  box-shadow: 
+    0 1px 3px rgba(156, 39, 176, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Shimmer gradient animation */
+@keyframes shimmer-gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Shimmer sweep animation */
+@keyframes shimmer-sweep {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Ensure text-white class works */
+button.text-white,
+a.text-white {
+  color: white !important;
+}
+
+/* Fix navigation links visibility - ensure they're dark enough */
+nav a[class*="text-mermaid-teal-700"]:not([class*="bg-mermaid-aqua"]) {
+  color: #004D40 !important;
+}
+
+/* Ensure all non-active nav links are visible */
+nav a:not([class*="bg-mermaid-aqua"]):not([class*="text-white"]) {
+  color: #004D40 !important;
+  font-weight: 500 !important;
+}
+
+/* Fix filter labels - make them dark for accessibility */
+label.text-mermaid-teal-700,
+label.text-mermaid-teal-900,
+label[class*="text-mermaid-teal-700"],
+label[class*="text-mermaid-teal-900"] {
+  color: #004D40 !important; /* Dark teal for accessibility */
+}
+
+/* Fix card content text - target specific contexts where text appears on cards */
+.bg-white .text-mermaid-teal-700,
+.bg-white .text-mermaid-teal-600,
+.bg-white\/70 .text-mermaid-teal-700,
+.bg-white\/70 .text-mermaid-teal-600,
+.bg-white\/90 .text-mermaid-teal-700,
+.bg-white\/90 .text-mermaid-teal-600,
+[class*="bg-white"] .text-mermaid-teal-700,
+[class*="bg-white"] .text-mermaid-teal-600 {
+  color: #004D40 !important; /* Dark teal for accessibility on white/light backgrounds */
+}
+
+/* Fix silver text in cards/filters */
+.bg-white .text-silver-400,
+.bg-white\/70 .text-silver-400,
+.bg-white\/90 .text-silver-400,
+[class*="bg-white"] .text-silver-400 {
+  color: #00695C !important; /* Darker teal for better contrast */
+}
+
+/* Carousel animations and mobile touch optimizations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Carousel touch optimizations */
+.carousel-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  will-change: transform;
+}
+
+/* Smooth momentum scrolling for carousel */
+.carousel-card {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Prevent text selection during drag */
+.carousel-dragging {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Touch action optimizations for carousel */
+.carousel-container {
+  touch-action: pan-x;
+}
+
+/* Smooth transitions for carousel cards */
+.carousel-card-transition {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              scale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hardware acceleration for carousel */
+.carousel-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Exerfily logo text styling */
+.exerfily-logo-text {
+  color: #A855F7 !important;
+  font-family: 'Bungee', cursive !important;
 }

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getWorkouts, saveWorkout } from '../services/workoutStorage';
-import type { Workout, Exercise } from '../types';
+import { useTheme } from '../contexts/ThemeContext';
+import type { Workout, Exercise, WorkoutExercise } from '../types';
 
 interface WorkoutSelectorModalProps {
   isOpen: boolean;
@@ -15,13 +16,16 @@ export default function WorkoutSelectorModal({
   exercise,
   onExerciseAdded
 }: WorkoutSelectorModalProps) {
+  const { theme } = useTheme();
   const [workouts] = useState<Workout[]>(getWorkouts());
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<string>('');
-  const [selectedSessionId, setSelectedSessionId] = useState<string>('');
   const [newWorkoutName, setNewWorkoutName] = useState('');
-  const [newSessionName, setNewSessionName] = useState('');
   const [showNewWorkout, setShowNewWorkout] = useState(false);
-  const [showNewSession, setShowNewSession] = useState(false);
+  
+  // Determine text colors based on theme
+  const titleColor = theme === 'dark' ? '#ffffff' : '#0f172a';
+  const selectTextColor = theme === 'dark' ? '#ffffff' : '#0f172a';
+  const placeholderColor = theme === 'dark' ? '#94a3b8' : '#64748b';
 
   if (!isOpen || !exercise) return null;
 
@@ -31,68 +35,42 @@ export default function WorkoutSelectorModal({
     if (!exercise) return;
 
     let workout: Workout;
-    let sessionId: string;
 
     if (showNewWorkout && newWorkoutName) {
       // Create new workout
-      const newSessionId = crypto.randomUUID();
       workout = {
         id: crypto.randomUUID(),
         name: newWorkoutName,
         description: '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-        sessions: [{
-          id: newSessionId,
-          name: newSessionName || 'Session 1',
-          notes: '',
-          exercises: []
-        }]
+        exercises: []
       };
-      sessionId = newSessionId;
-    } else if (selectedWorkoutId) {
-      workout = { ...selectedWorkout! };
-      
-      if (showNewSession && newSessionName) {
-        // Create new session in existing workout
-        const newSessionId = crypto.randomUUID();
-        workout.sessions.push({
-          id: newSessionId,
-          name: newSessionName,
-          notes: '',
-          exercises: []
-        });
-        sessionId = newSessionId;
-      } else if (selectedSessionId) {
-        sessionId = selectedSessionId;
-      } else {
-        alert('Please select or create a session');
-        return;
-      }
+    } else if (selectedWorkoutId && selectedWorkout) {
+      workout = { ...selectedWorkout };
     } else {
       alert('Please select or create a workout');
       return;
     }
 
-    // Add exercise to session
-    const session = workout.sessions.find(s => s.id === sessionId);
-    if (session) {
-      session.exercises.push({
-        id: crypto.randomUUID(),
-        exerciseId: exercise.id,
-        order: session.exercises.length,
-        sets: null,
-        reps: null,
-        weight: null,
-        tempo: null,
-        rest: null,
-        customTips: null
-      });
-      workout.updatedAt = new Date().toISOString();
-      saveWorkout(workout);
-      onExerciseAdded();
-      onClose();
-    }
+    // Add exercise to workout
+    const newWorkoutExercise: WorkoutExercise = {
+      id: crypto.randomUUID(),
+      exerciseId: exercise.id,
+      order: workout.exercises.length,
+      sets: null,
+      reps: null,
+      weight: null,
+      tempo: null,
+      rest: null,
+      customTips: null
+    };
+
+    workout.exercises.push(newWorkoutExercise);
+    workout.updatedAt = new Date().toISOString();
+    saveWorkout(workout);
+    onExerciseAdded();
+    onClose();
   };
 
   return (
@@ -101,10 +79,10 @@ export default function WorkoutSelectorModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg max-w-md w-full p-6"
+        className="bg-white/95 dark:bg-midnight-800/95 backdrop-blur-md rounded-xl max-w-md w-full p-6 shadow-2xl border border-mermaid-aqua-200 dark:border-midnight-700"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-xl font-bold text-slate-900 mb-4">
+        <h2 className="text-2xl font-bold mb-6" style={{ color: titleColor }}>
           Add {exercise.name} to Workout
         </h2>
 
@@ -112,26 +90,24 @@ export default function WorkoutSelectorModal({
           {!showNewWorkout ? (
             <>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-semibold text-mermaid-teal-700 dark:text-silver-300 mb-2">
                   Select Workout
                 </label>
                 <select
                   value={selectedWorkoutId}
-                  onChange={(e) => {
-                    setSelectedWorkoutId(e.target.value);
-                    setSelectedSessionId('');
-                  }}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                  onChange={(e) => setSelectedWorkoutId(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 dark:border-midnight-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white dark:bg-midnight-700 transition-all"
+                  style={{ color: selectTextColor }}
                 >
-                  <option value="">Choose a workout...</option>
+                  <option value="" style={{ color: placeholderColor }}>Choose a workout...</option>
                   {workouts.map(w => (
-                    <option key={w.id} value={w.id}>{w.name}</option>
+                    <option key={w.id} value={w.id} style={{ color: selectTextColor }}>{w.name}</option>
                   ))}
                 </select>
               </div>
               <button
                 onClick={() => setShowNewWorkout(true)}
-                className="text-sm text-blue-600 hover:underline"
+                className="text-sm font-medium text-mermaid-aqua-600 dark:text-mermaid-aqua-400 hover:text-mermaid-aqua-700 dark:hover:text-mermaid-aqua-300 hover:underline transition-colors"
               >
                 + Create New Workout
               </button>
@@ -139,7 +115,7 @@ export default function WorkoutSelectorModal({
           ) : (
             <>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
+                <label className="block text-sm font-semibold text-mermaid-teal-700 dark:text-silver-300 mb-2">
                   Workout Name
                 </label>
                 <input
@@ -147,98 +123,32 @@ export default function WorkoutSelectorModal({
                   value={newWorkoutName}
                   onChange={(e) => setNewWorkoutName(e.target.value)}
                   placeholder="Enter workout name"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Session Name
-                </label>
-                <input
-                  type="text"
-                  value={newSessionName}
-                  onChange={(e) => setNewSessionName(e.target.value)}
-                  placeholder="Enter session name (e.g., Day 1)"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md"
+                  className="w-full px-4 py-2.5 border border-mermaid-aqua-300 dark:border-midnight-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-mermaid-aqua-500 focus:border-mermaid-aqua-500 bg-white dark:bg-midnight-700 text-mermaid-teal-900 dark:text-white transition-all"
+                  autoFocus
                 />
               </div>
               <button
                 onClick={() => {
                   setShowNewWorkout(false);
                   setNewWorkoutName('');
-                  setNewSessionName('');
                 }}
-                className="text-sm text-slate-600 hover:underline"
+                className="text-sm text-slate-600 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 hover:underline transition-colors"
               >
                 ← Back to select workout
               </button>
             </>
           )}
 
-          {selectedWorkout && !showNewWorkout && (
-            <>
-              {!showNewSession ? (
-                <>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">
-                      Select Session
-                    </label>
-                    <select
-                      value={selectedSessionId}
-                      onChange={(e) => setSelectedSessionId(e.target.value)}
-                      className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                    >
-                      <option value="">Choose a session...</option>
-                      {selectedWorkout.sessions.map(s => (
-                        <option key={s.id} value={s.id}>{s.name}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <button
-                    onClick={() => setShowNewSession(true)}
-                    className="text-sm text-blue-600 hover:underline"
-                  >
-                    + Create New Session
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">
-                      Session Name
-                    </label>
-                    <input
-                      type="text"
-                      value={newSessionName}
-                      onChange={(e) => setNewSessionName(e.target.value)}
-                      placeholder="Enter session name"
-                      className="w-full px-3 py-2 border border-slate-300 rounded-md"
-                    />
-                  </div>
-                  <button
-                    onClick={() => {
-                      setShowNewSession(false);
-                      setNewSessionName('');
-                    }}
-                    className="text-sm text-slate-600 hover:underline"
-                  >
-                    ← Back to select session
-                  </button>
-                </>
-              )}
-            </>
-          )}
-
-          <div className="flex gap-2 pt-4">
+          <div className="flex gap-3 pt-4 border-t border-mermaid-aqua-200 dark:border-midnight-700">
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2 bg-slate-200 text-slate-700 rounded-md hover:bg-slate-300"
+              className="flex-1 px-4 py-2.5 bg-midnight-600 dark:bg-midnight-700 text-white dark:text-silver-100 rounded-lg hover:bg-midnight-500 dark:hover:bg-midnight-600 transition-colors font-medium shadow-sm"
             >
               Cancel
             </button>
             <button
               onClick={handleAdd}
-              className="flex-1 px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600"
+              className="flex-1 px-4 py-2.5 bg-mermaid-aqua-600 dark:bg-mermaid-aqua-500 text-white rounded-lg hover:bg-mermaid-aqua-700 dark:hover:bg-mermaid-aqua-600 transition-all font-medium shadow-sm hover:shadow-md"
             >
               Add
             </button>
@@ -248,4 +158,3 @@ export default function WorkoutSelectorModal({
     </div>
   );
 }
-
