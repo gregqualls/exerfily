@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { searchExerciseDB, addExerciseFromDB } from '../services/api';
 import { addFavorite } from '../services/favoritesStorage';
-import type { Exercise } from '../types';
 
 interface ExerciseDBModalProps {
   isOpen: boolean;

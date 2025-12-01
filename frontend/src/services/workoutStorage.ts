@@ -1,4 +1,12 @@
-import type { Workout, Session } from '../types';
+import type { Workout } from '../types';
+
+// Legacy Session type for migration only
+interface Session {
+  id: string;
+  name: string;
+  notes: string;
+  exercises: Workout['exercises'];
+}
 
 const STORAGE_KEY = 'exerfy-workouts';
 const MIGRATION_KEY = 'exerfy-workouts-migrated';

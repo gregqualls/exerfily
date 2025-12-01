@@ -26,7 +26,7 @@ export default function ExerciseBrowserModal({
   const [loadingFavorites, setLoadingFavorites] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<ExerciseFilters>({ limit: 100 });
-  const [totalExercises, setTotalExercises] = useState(0);
+  const [, setTotalExercises] = useState(0);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [hasMore, setHasMore] = useState(true);

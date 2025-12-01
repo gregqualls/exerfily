@@ -4,7 +4,6 @@ import { getWorkoutById, saveWorkout } from '../services/workoutStorage';
 import { fetchExerciseById } from '../services/api';
 import WorkoutExerciseRow from '../components/WorkoutExerciseRow';
 import PrintSettingsPanel from '../components/PrintSettingsPanel';
-import ExerciseDetailModal from '../components/ExerciseDetailModal';
 import ExerciseBrowserModal from '../components/ExerciseBrowserModal';
 import type { Workout, WorkoutExercise, Exercise, PrintConfig } from '../types';
 
@@ -26,8 +25,6 @@ export default function WorkoutDetailPage() {
   const navigate = useNavigate();
   const [workout, setWorkout] = useState<Workout | null>(null);
   const [exercises, setExercises] = useState<Map<string, Exercise>>(new Map());
-  const [isExerciseModalOpen, setIsExerciseModalOpen] = useState(false);
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [isExerciseBrowserOpen, setIsExerciseBrowserOpen] = useState(false);
   const nameInputRef = useRef<HTMLInputElement>(null);
 

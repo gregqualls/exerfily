@@ -24,7 +24,7 @@ describe('workoutStorage', () => {
       description: 'Test Description',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      sessions: []
+      exercises: []
     };
 
     saveWorkout(workout);
@@ -45,7 +45,7 @@ describe('workoutStorage', () => {
       description: 'Original',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      sessions: []
+      exercises: []
     };
 
     saveWorkout(workout);
@@ -71,7 +71,7 @@ describe('workoutStorage', () => {
       description: '',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      sessions: []
+      exercises: []
     };
 
     saveWorkout(workout);
@@ -88,21 +88,16 @@ describe('workoutStorage', () => {
       description: 'Description',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      sessions: [{
-        id: 'session-1',
-        name: 'Session 1',
-        notes: '',
-        exercises: [{
-          id: 'ex-1',
-          exerciseId: 'exercise-1',
-          order: 0,
-          sets: 3,
-          reps: '10',
-          weight: null,
-          tempo: null,
-          rest: null,
-          customTips: null
-        }]
+      exercises: [{
+        id: 'ex-1',
+        exerciseId: 'exercise-1',
+        order: 0,
+        sets: 3,
+        reps: '10',
+        weight: null,
+        tempo: null,
+        rest: null,
+        customTips: null
       }]
     };
 
@@ -111,8 +106,7 @@ describe('workoutStorage', () => {
 
     expect(duplicated.id).not.toBe(workout.id);
     expect(duplicated.name).toBe('Original (Copy)');
-    expect(duplicated.sessions[0].id).not.toBe(workout.sessions[0].id);
-    expect(duplicated.sessions[0].exercises[0].id).not.toBe(workout.sessions[0].exercises[0].id);
+    expect(duplicated.exercises[0].id).not.toBe(workout.exercises[0].id);
 
     const workouts = getWorkouts();
     expect(workouts).toHaveLength(2);
@@ -125,7 +119,7 @@ describe('workoutStorage', () => {
       description: '',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-      sessions: []
+      exercises: []
     };
 
     saveWorkout(workout);

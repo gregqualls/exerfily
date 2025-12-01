@@ -64,7 +64,7 @@ export async function extractGifFrames(gifUrl: string): Promise<string[] | null>
  * Generate frame URLs from a GIF URL
  * This is a simpler approach that works with services that can extract frames
  */
-export function getGifFrameUrls(gifUrl: string, frameIndices: number[] = [0, -1]): string[] {
+export function getGifFrameUrls(gifUrl: string, _frameIndices: number[] = [0, -1]): string[] {
   // For ExerciseDB GIFs, we can try to extract frames using a service
   // Or we can use the GIF URL directly and let the browser handle it
   // For now, return the original URL twice as a fallback

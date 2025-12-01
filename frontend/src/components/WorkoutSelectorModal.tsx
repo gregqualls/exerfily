@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getWorkouts, saveWorkout } from '../services/workoutStorage';
 import { useTheme } from '../contexts/ThemeContext';
 import type { Workout, Exercise, WorkoutExercise } from '../types';
