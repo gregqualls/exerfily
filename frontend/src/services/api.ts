@@ -1,6 +1,10 @@
 import type { Exercise, ExerciseFilters, ExerciseResponse } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// Use relative URLs when VITE_API_URL is empty or undefined in production,
+// or use the configured URL, or fallback to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_URL !== undefined 
+  ? import.meta.env.VITE_API_URL 
+  : (import.meta.env.PROD ? '' : 'http://localhost:3000');
 
 export async function fetchExercises(filters: ExerciseFilters = {}): Promise<ExerciseResponse> {
   const params = new URLSearchParams();

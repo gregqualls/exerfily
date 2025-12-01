@@ -3,6 +3,8 @@
 applications:
   backend:
     type: nodejs:24
+    source:
+      root: backend
     build:
       flavor: none
     hooks:
@@ -14,9 +16,7 @@ applications:
         start: npm start
       locations:
         /:
-          root: public
           passthru: true
-          allow: false
 
   frontend:
     type: nodejs:24
@@ -24,10 +24,13 @@ applications:
       root: frontend
     build:
       flavor: none
+    variables:
+      env:
+        VITE_API_URL: ''
     hooks:
       build: |
         set -ex
-        npm install --omit=dev
+        npm install
         npm run build
     web:
       commands:
@@ -49,3 +52,9 @@ routes:
   https://{default}/:
     type: upstream
     upstream: frontend:http
+  https://{default}/api:
+    type: upstream
+    upstream: backend:http
+  https://{default}/health:
+    type: upstream
+    upstream: backend:http
