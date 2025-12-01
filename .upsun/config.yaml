@@ -40,18 +40,10 @@ applications:
         npm run build
     web:
       commands:
-        start: sleep infinity
+        start: npm start
       locations:
         /:
-          root: dist
-          index: [index.html]
-          scripts: false
-          allow: true
-          expires: 24h
-          rules:
-            '\.(css|js|gif|jpe?g|png|svg|webp)$':
-              allow: true
-              expires: 4w
+          passthru: true
 
 services:
   # No external services detected or required based on project files and dependencies

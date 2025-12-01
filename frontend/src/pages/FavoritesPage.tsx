@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
-import { fetchExerciseById } from '../services/api';
+import { useState, useEffect, useMemo } from 'react';
+import { fetchExerciseById, fetchBodyParts, fetchTargets, fetchEquipments } from '../services/api';
+import CollapsibleFilterBar from '../components/CollapsibleFilterBar';
 import ExerciseGrid from '../components/ExerciseGrid';
 import ExerciseDetailModal from '../components/ExerciseDetailModal';
 import WorkoutSelectorModal from '../components/WorkoutSelectorModal';
 import { getFavoriteExerciseIds, toggleFavorite } from '../services/favoritesStorage';
-import type { Exercise } from '../types';
+import { getAvailableEquipment } from '../services/equipmentStorage';
+import type { Exercise, ExerciseFilters } from '../types';
 
 export default function FavoritesPage() {
   const [exercises, setExercises] = useState<Exercise[]>([]);
@@ -14,10 +16,32 @@ export default function FavoritesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [exerciseToAdd, setExerciseToAdd] = useState<Exercise | null>(null);
   const [isWorkoutSelectorOpen, setIsWorkoutSelectorOpen] = useState(false);
+  const [filters, setFilters] = useState<ExerciseFilters>({});
+  
+  // Filter options loaded from API
+  const [availableBodyParts, setAvailableBodyParts] = useState<string[]>([]);
+  const [availableMuscles, setAvailableMuscles] = useState<string[]>([]);
+  const [availableEquipment, setAvailableEquipment] = useState<string[]>([]);
 
   useEffect(() => {
+    loadFilterOptions();
     loadFavoriteExercises();
   }, []);
+
+  const loadFilterOptions = async () => {
+    try {
+      const [bodyParts, targets, equipments] = await Promise.all([
+        fetchBodyParts().catch(() => []),
+        fetchTargets().catch(() => []),
+        fetchEquipments().catch(() => [])
+      ]);
+      setAvailableBodyParts(Array.isArray(bodyParts) ? bodyParts : []);
+      setAvailableMuscles(Array.isArray(targets) ? targets : []);
+      setAvailableEquipment(Array.isArray(equipments) ? equipments : []);
+    } catch (err) {
+      console.error('Error loading filter options:', err);
+    }
+  };
 
   const loadFavoriteExercises = async () => {
     setLoading(true);
@@ -83,6 +107,75 @@ export default function FavoritesPage() {
     }
   };
 
+  // Apply filters to favorite exercises (client-side filtering)
+  const filteredExercises = useMemo(() => {
+    let filtered = [...exercises];
+
+    // Search filter
+    if (filters.q) {
+      const query = filters.q.toLowerCase();
+      filtered = filtered.filter(ex => 
+        ex.name.toLowerCase().includes(query) ||
+        ex.description?.toLowerCase().includes(query) ||
+        ex.instructions?.some(inst => inst.toLowerCase().includes(query))
+      );
+    }
+
+    // Body part filter
+    if (filters.bodyPart) {
+      filtered = filtered.filter(ex => 
+        ex.bodyPart?.toLowerCase() === filters.bodyPart?.toLowerCase()
+      );
+    }
+
+    // Primary muscle filter
+    if (filters.primaryMuscle) {
+      const muscleFilter = filters.primaryMuscle.toLowerCase();
+      filtered = filtered.filter(ex => 
+        ex.primaryMuscles.some(muscle => muscle.toLowerCase().includes(muscleFilter))
+      );
+    }
+
+    // Equipment filter
+    if (filters.equipment) {
+      filtered = filtered.filter(ex => 
+        ex.equipment.some(eq => eq.toLowerCase() === filters.equipment?.toLowerCase())
+      );
+    }
+
+    // Level filter
+    if (filters.level) {
+      filtered = filtered.filter(ex => 
+        ex.level?.toLowerCase() === filters.level?.toLowerCase()
+      );
+    }
+
+    // Exercise type filter (check both category and exerciseType fields)
+    if (filters.exerciseType) {
+      const typeFilter = filters.exerciseType.toUpperCase();
+      filtered = filtered.filter(ex => 
+        ex.category?.toUpperCase() === typeFilter ||
+        ex.exerciseType?.toUpperCase() === typeFilter
+      );
+    }
+
+    // Equipment availability filter
+    if (filters.equipmentFilterEnabled && filters.equipmentFilterMode !== 'off') {
+      const availableEquipmentList = getAvailableEquipment();
+      if (availableEquipmentList.length > 0) {
+        filtered = filtered.filter(ex => {
+          if (filters.equipmentFilterMode === 'all') {
+            return ex.equipment.every(eq => availableEquipmentList.includes(eq));
+          } else {
+            return ex.equipment.some(eq => availableEquipmentList.includes(eq));
+          }
+        });
+      }
+    }
+
+    return filtered;
+  }, [exercises, filters]);
+
   if (loading) {
     return (
       <div className="min-h-screen page-enter">
@@ -101,12 +194,24 @@ export default function FavoritesPage() {
         <div className="flex items-center justify-between mb-6 animate-fade-in-up">
           <h1 className="text-4xl font-bold text-mermaid-teal-900">Favorites</h1>
           {exercises.length > 0 && (
-            <p className="text-mermaid-teal-600">{exercises.length} favorite{exercises.length !== 1 ? 's' : ''}</p>
+            <p className="text-mermaid-teal-600">
+              {filteredExercises.length} of {exercises.length} favorite{exercises.length !== 1 ? 's' : ''}
+            </p>
           )}
         </div>
 
+        {exercises.length > 0 && (
+          <CollapsibleFilterBar
+            filters={filters}
+            onFiltersChange={setFilters}
+            availableBodyParts={availableBodyParts}
+            availableMuscles={availableMuscles}
+            availableEquipment={availableEquipment}
+          />
+        )}
+
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 animate-fade-in">
+          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4 animate-fade-in mt-6">
             {error}
           </div>
         )}
@@ -138,12 +243,19 @@ export default function FavoritesPage() {
 
         {!loading && !error && exercises.length > 0 && (
           <div className="mt-6">
-            <ExerciseGrid
-              exercises={exercises}
-              onExerciseClick={handleExerciseClick}
-              onAddToWorkout={handleAddToWorkout}
-              onToggleFavorite={handleToggleFavorite}
-            />
+            {filteredExercises.length === 0 ? (
+              <div className="text-center py-12 animate-fade-in">
+                <p className="text-mermaid-teal-700 text-lg mb-2">No favorites match your filters</p>
+                <p className="text-mermaid-teal-600">Try adjusting your filter criteria</p>
+              </div>
+            ) : (
+              <ExerciseGrid
+                exercises={filteredExercises}
+                onExerciseClick={handleExerciseClick}
+                onAddToWorkout={handleAddToWorkout}
+                onToggleFavorite={handleToggleFavorite}
+              />
+            )}
           </div>
         )}
 
