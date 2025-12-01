@@ -33,6 +33,7 @@ async function initializeDatabase() {
         console.log(`✅ Initial sync completed: ${result.exerciseCount} exercises loaded`);
       } else {
         console.error('❌ Initial sync failed:', result.error);
+        // Don't crash the server if sync fails - continue anyway
       }
     } else {
       console.log(`Database initialized with ${exerciseCount} exercises`);
@@ -49,11 +50,13 @@ async function initializeDatabase() {
     }
   } catch (error) {
     console.error('Error initializing database:', error);
+    // Don't crash the server - continue even if DB init fails
+    // The API will return errors, but at least the server will be up
   }
 }
 
 // Start server
 app.listen(PORT, async () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
   await initializeDatabase();
 });
